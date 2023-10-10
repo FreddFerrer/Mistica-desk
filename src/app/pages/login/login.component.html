@@ -1,0 +1,42 @@
+<div class="login-card-container estiloBody" >
+    <div class="login-card">
+        <div class="login-card-logo">
+            <img src="assets/img/logo-1.png" class="logoLogin" alt="logo">
+        </div>
+        <div class="login-card-header">
+            <h1>Ingresar</h1>
+            
+        </div>
+        <form class="login-card-form" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+            <div class="form-item">
+                <span class="form-item-icon material-symbols-rounded">Email</span>
+                <input type="text" placeholder="Ingrese su usuario" id="emailForm" 
+                autofocus required [(ngModel)]="username" name="username">
+            </div>
+            <div class="form-item">
+                <span class="form-item-icon material-symbols-rounded">lock</span>
+                <input type="password" placeholder="Ingrese su contraseña" id="passwordForm"
+                 required [(ngModel)]="password" name="password">
+            </div>
+            <div class="form-item-other">
+                <div class="checkbox">
+                    <input type="checkbox" id="rememberMeCheckbox" checked>
+                    <label for="rememberMeCheckbox">Recuérdame</label>
+                </div>
+                <a href="#">Olvidé la contraseña!</a>
+            </div>
+            <button type="submit" [disabled]="!f.valid">Ingresar</button>
+        </form>
+        
+    </div>
+    <div class="login-card-social">
+        <div>Visite la página</div>
+        <div class="login-card-social-btns">
+            <a href="#">
+                <img src="assets/img/logo-2.png" alt="logo">
+            </a>
+            
+        </div>
+    </div>
+    
+</div>
