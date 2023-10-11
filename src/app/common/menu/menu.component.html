@@ -1,140 +1,111 @@
-
- <div class="flex">
-    <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-           <ul class="space-y-2 font-medium">
-              <li>
-                 <a routerLink="/index" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" 
-                    stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" 
-                    stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" 
-                        clip-rule="evenodd" d="M11.3103 1.77586C11.6966 1.40805 12.3034 1.40805 
-                        12.6897 1.77586L20.6897 9.39491L23.1897 11.7759C23.5896 12.1567 23.605 12.7897 
-                        23.2241 13.1897C22.8433 13.5896 22.2103 13.605 21.8103 13.2241L21 12.4524V20C21 
-                        21.1046 20.1046 22 19 22H14H10H5C3.89543 22 3 21.1046 3 20V12.4524L2.18966 
-                        13.2241C1.78972 13.605 1.15675 13.5896 0.775862 13.1897C0.394976 12.7897 
-                        0.410414 12.1567 0.810345 11.7759L3.31034 9.39491L11.3103 1.77586ZM5 
-                        10.5476V20H9V15C9 13.3431 10.3431 12 12 12C13.6569 12 15 13.3431 15 
-                        15V20H19V10.5476L12 3.88095L5 10.5476ZM13 20V15C13 14.4477 12.5523 
-                        14 12 14C11.4477 14 11 14.4477 11 15V20H13Z" fill="#ffffff"></path> </g></svg>
-                    <span class="ml-3">Inicio</span>
-                 </a>
-              </li>
-              <li *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')" >
-                 <a routerLink="/alumnos" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg width="64px" height="64px" viewBox="0 -0.5 25 25" fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" 
-                    stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" 
-                    stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
-                        <path fill-rule="evenodd" clip-rule="evenodd" 
-                        d="M14.9238 7.281C14.9227 8.5394 13.9018 9.55874 12.6435 9.558C11.3851 
-                        9.55726 10.3654 8.53673 10.3658 7.27833C10.3662 6.01994 11.3864 5 12.6448 
-                        5C13.2495 5.00027 13.8293 5.24073 14.2567 5.6685C14.6841 6.09627 14.924 
-                        6.67631 14.9238 7.281Z" stroke="#ffffff" stroke-width="1.5" 
-                        stroke-linecap="round" stroke-linejoin="round"></path> 
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9968 
-                        12.919H10.2968C8.65471 12.9706 7.35028 14.3166 7.35028 15.9595C7.35028 
-                        17.6024 8.65471 18.9484 10.2968 19H14.9968C16.6388 18.9484 17.9432 
-                        17.6024 17.9432 15.9595C17.9432 14.3166 16.6388 12.9706 14.9968 
-                        12.919V12.919Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" 
-                        stroke-linejoin="round"></path> <path fill-rule="evenodd" clip-rule="evenodd" 
-                        d="M20.6878 9.02403C20.6872 9.98653 19.9066 10.7664 18.9441 10.766C17.9816
-                         10.7657 17.2016 9.9852 17.2018 9.0227C17.202 8.06019 17.9823 7.28003 
-                         18.9448 7.28003C19.4072 7.28003 19.8507 7.4638 20.1776 7.7909C20.5045 
-                         8.11799 20.688 8.56158 20.6878 9.02403V9.02403Z" stroke="#ffffff" 
-                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path fill-rule="evenodd" 
-                         clip-rule="evenodd" d="M4.3338 9.02401C4.3338 9.98664 5.11417 
-                         10.767 6.0768 10.767C7.03943 10.767 7.8198 9.98664 7.8198 
-                         9.02401C7.8198 8.06137 7.03943 7.28101 6.0768 7.28101C5.11417 
-                         7.28101 4.3338 8.06137 4.3338 9.02401V9.02401Z" stroke="#ffffff"
-                          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path 
-                          d="M19.4368 12.839C19.0226 12.839 18.6868 13.1748 18.6868 13.589C18.6868 
-                          14.0032 19.0226 14.339 19.4368 14.339V12.839ZM20.7438 13.589L20.7593 
-                          12.8392C20.7541 12.839 20.749 12.839 20.7438 12.839V13.589ZM20.7438 
-                          18.24V18.99C20.749 18.99 20.7541 18.9899 20.7593 18.9898L20.7438 
-                          18.24ZM19.4368 17.49C19.0226 17.49 18.6868 17.8258 18.6868 18.24C18.6868 
-                          18.6542 19.0226 18.99 19.4368 18.99V17.49ZM5.58477 14.339C5.99899 14.339 
-                          6.33477 14.0032 6.33477 13.589C6.33477 13.1748 5.99899 12.839 5.58477 
-                          12.839V14.339ZM4.27777 13.589V12.839C4.27259 12.839 4.26741 12.839 4.26222 
-                          12.8392L4.27777 13.589ZM4.27777 18.24L4.26222 18.9898C4.26741 18.9899 4.27259 18.99
-                           4.27777 18.99V18.24ZM5.58477 18.99C5.99899 18.99 6.33477 18.6542 6.33477 
-                           18.24C6.33477 17.8258 5.99899 17.49 5.58477 17.49V18.99ZM19.4368 
-                           14.339H20.7438V12.839H19.4368V14.339ZM20.7282 14.3388C21.5857 14.3566 
-                           22.2715 15.0568 22.2715 15.9145H23.7715C23.7715 14.2405 22.4329 12.8739 20.7593
-                            12.8392L20.7282 14.3388ZM22.2715 15.9145C22.2715 16.7722 21.5857 17.4724 20.7282
-                             17.4902L20.7593 18.9898C22.4329 18.9551 23.7715 17.5885 23.7715 15.9145H22.2715ZM20.7438
-                              17.49H19.4368V18.99H20.7438V17.49ZM5.58477 12.839H4.27777V14.339H5.58477V12.839ZM4.26222 
-                              12.8392C2.58861 12.8739 1.25 14.2405 1.25 15.9145H2.75C2.75 15.0568 3.43584 14.3566
-                               4.29332 14.3388L4.26222 12.8392ZM1.25 15.9145C1.25 17.5885 2.58861 18.9551
-                                4.26222 18.9898L4.29332 17.4902C3.43584 17.4724 2.75 16.7722 2.75 15.9145H1.25ZM4.27777
-                                 18.99H5.58477V17.49H4.27777V18.99Z" fill="#ffffff"></path> </g></svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Alumnos</span>                
-                 </a>
-              </li>
-              <li *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE' || rol === 'ROLE_ESTUDIANTE')">
-                 <a routerLink="/materias" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;} </style> <polygon class="st0" points="4,11 15,18 28,9 17,2 "></polygon> <path class="st0" d="M4,11v6l11,7l13-9l0,0c-1.2-1.2-1.5-3-0.7-4.5L28,9"></path> <path class="st0" d="M4,17v6l11,7l13-9l0,0c-1.2-1.2-1.5-3-0.7-4.5L28,15"></path> </g></svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Materias</span>
-                 </a>
-              </li>
-              <li *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'">
-                 <a routerLink="/docentes" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg fill="#ffffff" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.001 512.001" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M256,253.694c-98.367,0-177.581,80.106-177.581,177.581v61.375c0,10.687,8.664,19.351,19.351,19.351h316.46 c10.687,0,19.352-8.664,19.352-19.351v-61.375C433.581,333.567,354.202,253.694,256,253.694z M317.69,306.876L256,368.566 l-61.69-61.69C232.353,287.933,278.19,287.208,317.69,306.876z M117.121,473.297v-42.024c0-40.313,17.272-76.663,44.796-102.057 l80.399,80.399c7.556,7.557,19.809,7.557,27.367,0l80.399-80.399c27.524,25.393,44.796,61.744,44.796,102.057v42.024H117.121z"></path> <path d="M156.132,238.432h99.867h99.866c10.687,0,19.352-8.664,19.352-19.352v-99.867c0-0.034-0.005-0.066-0.005-0.099 C375.157,53.757,322.191,0,256,0c-65.622,0-119.159,53.351-119.213,119.115c0,0.034-0.005,0.066-0.005,0.099v99.867 C136.781,229.768,145.445,238.432,156.132,238.432z M326.872,81.049c-37.613,15.147-81.51-0.609-100.764-36.569 C263.888,29.323,307.296,44.844,326.872,81.049z M194.535,67.294c28.529,48.199,88.414,70.447,141.966,51.485 c0.001,0.146,0.01,0.289,0.01,0.435c0,44.394-36.118,80.511-80.511,80.511C187.613,199.727,150.453,119.399,194.535,67.294z"></path> </g> </g> </g> </g></svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Docentes</span>
-                 </a>
-              </li>
-              
-              
-              <li *ngIf="isLogged" (click)="onLogOut()">
-                 <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg width="64px" height="64px" viewBox="0 0 24 24"
-                     fill="none" xmlns="http://www.w3.org/2000/svg" 
-                     stroke="#ffffff"><g id="SVGRepo_bgCarrier" 
-                     stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" 
-                     stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
-                        <path d="M12.9999 2C10.2385 2 7.99991 4.23858 7.99991 7C7.99991 
-                        7.55228 8.44762 8 8.99991 8C9.55219 8 9.99991 7.55228 9.99991 
-                        7C9.99991 5.34315 11.3431 4 12.9999 4H16.9999C18.6568 4 19.9999 
-                        5.34315 19.9999 7V17C19.9999 18.6569 18.6568 20 16.9999 20H12.9999C11.3431
-                         20 9.99991 18.6569 9.99991 17C9.99991 16.4477 9.55219 16 8.99991 
-                         16C8.44762 16 7.99991 16.4477 7.99991 17C7.99991 19.7614 10.2385 22 
-                         12.9999 22H16.9999C19.7613 22 21.9999 19.7614 21.9999 17V7C21.9999 
-                         4.23858 19.7613 2 16.9999 2H12.9999Z" fill="#ffffff"></path> <path 
-                         d="M13.9999 11C14.5522 11 14.9999 11.4477 14.9999 12C14.9999 12.5523 
-                         14.5522 13 13.9999 13V11Z" fill="#ffffff"></path> <path d="M5.71783 
-                         11C5.80685 10.8902 5.89214 10.7837 5.97282 10.682C6.21831 10.3723 6.42615
-                          10.1004 6.57291 9.90549C6.64636 9.80795 6.70468 9.72946 6.74495 9.67492L6.79152
-                           9.61162L6.804 9.59454L6.80842 9.58848C6.80846 9.58842 6.80892 9.58778 5.99991
-                            9L6.80842 9.58848C7.13304 9.14167 7.0345 8.51561 6.58769 8.19098C6.14091
-                             7.86637 5.51558 7.9654 5.19094 8.41215L5.18812 8.41602L5.17788 
-                             8.43002L5.13612 8.48679C5.09918 8.53682 5.04456 8.61033 4.97516 8.7025C4.83623
-                              8.88702 4.63874 9.14542 4.40567 9.43937C3.93443 10.0337 3.33759 10.7481
-                               2.7928 11.2929L2.08569 12L2.7928 12.7071C3.33759 13.2519 3.93443 13.9663 
-                               4.40567 14.5606C4.63874 14.8546 4.83623 15.113 4.97516 15.2975C5.04456 
-                               15.3897 5.09918 15.4632 5.13612 15.5132L5.17788 15.57L5.18812 15.584L5.19045
-                                15.5872C5.51509 16.0339 6.14091 16.1336 6.58769 15.809C7.0345 15.4844 7.13355 
-                                14.859 6.80892 14.4122L5.99991 15C6.80892 14.4122 6.80897 14.4123 6.80892 14.4122L6.804
-                                 14.4055L6.79152 14.3884L6.74495 14.3251C6.70468 14.2705 6.64636 14.1921 6.57291 
-                                 14.0945C6.42615 13.8996 6.21831 13.6277 5.97282 13.318C5.89214 13.2163 5.80685 13.1098
-                                  5.71783 13H13.9999V11H5.71783Z" fill="#ffffff"></path> </g></svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Salir</span>
-                </a>
-              </li>
-           </ul>
+<div class="flex">
+   <aside class="font-poppins antialiased fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+      <div id="view" class="h-full w-screen relative flex flex-row">
+        <div id="sidebar" class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out" x-show="sidenav">
+         <div class="space-y-6 md:space-y-10 mt-10">
+            <h1 class="font-bold text-4xl text-center md:hidden">
+              E<span class="text-teal-600">.</span>
+            </h1>
+            <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
+              Educar<span class="text-teal-600">.</span>
+            </h1>
+            <div id="profile" class="space-y-3">
+              <img
+                src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                alt="Avatar user"
+                class="w-10 md:w-16 rounded-full mx-auto"
+              />
+              <div>
+                <h2
+                  class="font-medium text-xs md:text-sm text-center text-[#3498DB]"
+                >
+                <span>{{ usuario }}</span>
+                </h2>
+                <p class="text-xs text-gray-500 text-center"><span>{{ rolTexto }}</span></p>
+              </div>
+            </div>
+            </div>
+            <div id="menu" class="flex flex-col space-y-2">
+              <a
+               *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')"
+                routerLink="/alumnos"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
+              >
+                <svg
+                  class="w-6 h-6 fill-current inline-block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  ></path>
+                </svg>
+                <span class="">Alumnos</span>
+              </a>
+              <a
+               *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE' || rol === 'ROLE_ESTUDIANTE')"
+                routerLink="/materias"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              >
+                <svg
+                  class="w-6 h-6 fill-current inline-block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
+                  ></path>
+                </svg>
+                <span class="">Materias</span>
+              </a>
+              <a
+               *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'"
+                routerLink="/docentes"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              >
+                <svg
+                  class="w-6 h-6 fill-current inline-block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="">Docentes</span>
+              </a>
+              <a
+                  *ngIf="isLogged" (click)="onLogOut()"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              >
+                <svg
+                  class="w-6 h-6 fill-current inline-block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+                  ></path>
+                </svg>
+                <span class="">Salir</span>
+              </a>
+            </div>
+          </div>
+          
         </div>
-     </aside>
-     <main class="ml-64 p-4"> <!-- Ajusta el margen izquierdo para dar espacio al sidebar -->
-        <!-- Contenido principal de la página de inicio (index) -->
-        <!-- Aquí va el contenido de tu página de inicio -->
-        <router-outlet></router-outlet>
-      </main>
- </div>
-
-  
-
- 
- 
- 
- 
- 
+   </aside>
+   <div class="flex">
+      <main class="ml-0 md:ml-60 p-4 absolute top-0 left-0 right-0 bottom-0">
+         <!-- Contenido principal de la página -->
+         <router-outlet></router-outlet>
+       </main>
+   </div>
+   
+</div>

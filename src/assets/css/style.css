@@ -6,13 +6,11 @@ body {
     font-family: 'Poppins', sans-serif;
     
     background: linear-gradient(to right, #3498DB, #F7F9F9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
-.estiloBody {
-    min-height: 100vh;
+.fondo {
+    background: linear-gradient(to right, #3498DB, #F7F9F9);
 }
 
 

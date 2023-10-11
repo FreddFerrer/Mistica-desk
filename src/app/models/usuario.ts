@@ -1,4 +1,3 @@
-import { RolEnum } from "./rol-enum";
 
 export class Usuario {
     id: number;

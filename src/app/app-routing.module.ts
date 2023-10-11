@@ -5,6 +5,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { AlumnosComponent } from './pages/alumnos/alumnos.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
+import { AlumnosModalComponent } from './pages/alumnos/alumnos-modal/alumnos-modal.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
 import { TokenService } from 'src/app/services/token.service';
 
 const navLinks = document.querySelector('.nav-links') as HTMLElement;
@@ -14,6 +15,7 @@ export class MenuComponent implements OnInit{
   isLogged = false;
   rol: string;
   rolTexto: string;
+  usuario: string;
 
   
 
@@ -24,6 +26,7 @@ export class MenuComponent implements OnInit{
       this.isLogged = true;
       this.rol = this.tokenService.getAuthority();
       this.rolTexto = this.convertirRolATexto(this.rol);
+      this.usuario = this.tokenService.getUserName();
     } else {
       this.isLogged = false;
     }

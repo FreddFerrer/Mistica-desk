@@ -1,0 +1,21 @@
+.boton-agregar-alumno {
+    background-color: #b3d9e6; 
+    border: 1px solid #ffffff; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    margin-bottom: 10px;
+    
+    
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .boton-agregar-alumno:hover {
+    background-color: #cccccc; 
+  }
+
+  .div-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

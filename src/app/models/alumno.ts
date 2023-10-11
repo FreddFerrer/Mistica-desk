@@ -1,6 +1,5 @@
 import { Asistencia } from "./asistencia";
 import { Calificacion } from "./calificacion";
-import { Materia } from "./materia";
 import { Usuario } from "./usuario";
 
 export class Alumno {

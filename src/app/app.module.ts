@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -14,6 +13,9 @@ import { DocentesComponent } from './pages/docentes/docentes.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InterceptorService } from './services/interceptor.service';
+import { AlumnosModalComponent } from './pages/alumnos/alumnos-modal/alumnos-modal.component';
+import { MateriasModalComponent } from './pages/materias/materias-modal/materias-modal.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MenuComponent,
     AlumnosComponent,
     DocentesComponent,
-    MateriasComponent
+    MateriasComponent,
+    AlumnosModalComponent,
+    MateriasModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
