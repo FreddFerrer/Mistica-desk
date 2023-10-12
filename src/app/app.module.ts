@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorService } from './services/interceptor.service';
 import { AlumnosModalComponent } from './pages/alumnos/alumnos-modal/alumnos-modal.component';
 import { MateriasModalComponent } from './pages/materias/materias-modal/materias-modal.component';
+import { NuevoDocenteModalComponent } from './pages/docentes/nuevo-docente-modal/nuevo-docente-modal.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MateriasModalComponent } from './pages/materias/materias-modal/materias
     DocentesComponent,
     MateriasComponent,
     AlumnosModalComponent,
-    MateriasModalComponent
+    MateriasModalComponent,
+    NuevoDocenteModalComponent
   ],
   imports: [
     BrowserModule,

@@ -51,13 +51,4 @@ export class MenuComponent implements OnInit{
         return '';
     }
   }
-
-  menuIcon: string = 'menu'; // Nombre del ícono inicial
-
-  onToggleMenu() {
-    this.menuIcon = this.menuIcon === 'menu' ? 'close' : 'menu'; // Cambiar el ícono entre 'menu' y 'close'
-    // También puedes agregar aquí la lógica para mostrar/ocultar el menú desplegable.
-  }
-
-
 }

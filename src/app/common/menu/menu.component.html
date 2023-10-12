@@ -1,13 +1,13 @@
 <div class="flex">
    <aside class="font-poppins antialiased fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-      <div id="view" class="h-full w-screen relative flex flex-row">
+      <div id="view" class="h-full relative flex flex-row">
         <div id="sidebar" class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out" x-show="sidenav">
          <div class="space-y-6 md:space-y-10 mt-10">
             <h1 class="font-bold text-4xl text-center md:hidden">
-              E<span class="text-teal-600">.</span>
+              E<span class="text-[#3498DB]">.</span>
             </h1>
             <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
-              Educar<span class="text-teal-600">.</span>
+              Educar para <br><span class="text-[#3498DB]">Tranformar</span>
             </h1>
             <div id="profile" class="space-y-3">
               <img
@@ -81,6 +81,27 @@
                 <span class="">Docentes</span>
               </a>
               <a
+               *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'"
+                routerLink="/docentes"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+              >
+                <svg
+                  class="w-6 h-6 fill-current inline-block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="">Pagos</span>
+              </a>
+              
+              <a
                   *ngIf="isLogged" (click)="onLogOut()"
                 class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
               >
@@ -102,10 +123,11 @@
         </div>
    </aside>
    <div class="flex">
-      <main class="ml-0 md:ml-60 p-4 absolute top-0 left-0 right-0 bottom-0">
+    <div class="ml-0 md:ml-60 p-4 absolute top-0 left-0 right-0 bottom-0">
+      <div class="block mt-10 text-center place-content-center ">
          <!-- Contenido principal de la página -->
          <router-outlet></router-outlet>
-       </main>
+      </div>
+    </div>
    </div>
-   
 </div>

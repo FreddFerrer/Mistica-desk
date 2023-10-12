@@ -21,6 +21,7 @@ export class AlumnosComponent implements OnInit{
     
   }
 
+
   openModal() {
     console.log('boton andaaaaa')
     this.modalSwitch = true;

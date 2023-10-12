@@ -3,6 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.divPrincipal {
+  z-index: 0;
+  background: linear-gradient(to right, #3498DB, #F7F9F9);
+  
+}
+
+/* Sidebar */
+#sidebar {
+  
+  z-index: 10;
+  
+}
+
+
+
 .toast-center-center {
     top: 50%;
     left: 50%;
