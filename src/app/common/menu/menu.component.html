@@ -26,7 +26,8 @@
         <div id="menu" class="flex flex-col space-y-2">
           <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')" routerLink="/alumnos"
             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out flex flex-row justify-left align-center text-center">
-            <img class="w-12" src="../../../assets/img/icons/grupo.png" alt="">
+            <!-- Si querés que el ícono en el sidebar sea más chico, solo modifica la clase w-10 por un número meno w-8 por ejemplo -->
+            <img class="w-10" src="../../../assets/img/icons/grupo.png" alt="">
             <span class="pt-2 pl-2">Alumnos</span>
           </a>
           <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE' || rol === 'ROLE_ESTUDIANTE')"
