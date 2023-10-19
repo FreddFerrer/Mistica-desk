@@ -25,7 +25,7 @@ export class DocentesComponent {
   }
 
   ngOnInit() {
-    this.modalService.$modal.subscribe( (valor) => {
+    this.modalService.$nuevoAlumno.subscribe( (valor) => {
       this.modalSwitch = valor;
     } )
     this.cargarDocentes();

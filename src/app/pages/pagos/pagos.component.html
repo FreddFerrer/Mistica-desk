@@ -1,0 +1,60 @@
+<app-menu></app-menu>
+
+<div class="flex">
+    <div class="ml-0 md:ml-60 p-4 absolute top-0 left-0 right-0 bottom-0 divPrincipal">
+      <div class="block mt-10 text-center place-content-center ">
+        <div class="w-full flex justify-center py-12" id="button">
+            <button (click)="openModal()"
+              class=" shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Registrar
+            pago</button>
+          </div>
+        <div class="flex flex-col">
+            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden ">
+                        <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                            <thead class="bg-gray-100 dark:bg-gray-700">
+                                <tr>
+                                    
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Nombre Alumno
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Fecha
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Monto
+                                    </th>
+                                    <th *ngIf="rol === 'ROLE_ESTUDIANTE'" scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Comprobante
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700" *ngFor="let pago of pagos">
+                                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                      {{ pago.alumno.nombre + ' ' + pago.alumno.apellido }}
+                                    </td>
+                                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                      {{ pago.fechaPago | date: 'yyyy-MM-dd' }}
+                                    </td>                                  
+                                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                      {{ pago.monto | currency: 'USD': 'symbol' }}
+                                    </td>
+                                    <td *ngIf="rol === 'ROLE_ESTUDIANTE'" class="py-4 text-left pl-6 text-sm font-medium  whitespace-nowrap">
+                                        <a (click)="createPdf(pago)" class="text-blue-600 dark:text-blue-500 hover:underline">Descargar</a>
+                                    </td>
+                                  </tr>
+                                                                 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+	

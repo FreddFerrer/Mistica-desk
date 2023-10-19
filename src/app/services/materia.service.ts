@@ -9,12 +9,22 @@ import { Observable } from 'rxjs';
 export class MateriaService {
 
   private materiasUrl = 'http://localhost:8080/api/materias';
+  private materiasPorDocenteUrl = 'http://localhost:8080/api/materiasPorDocente';
+  private materiasPorAlumnoUrl = 'http://localhost:8080/api/materiasPorAlumno';
 
   constructor(private http: HttpClient) {}
 
   //traer las materias
   getMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(this.materiasUrl);
+  }
+
+  getMateriasPorDocente(): Observable<Materia[]> {
+    return this.http.get<Materia[]>(this.materiasPorDocenteUrl);
+  }
+
+  getMateriasPorAlumno(): Observable<Materia[]> {
+    return this.http.get<Materia[]>(this.materiasPorAlumnoUrl);
   }
 
   // Traer una materia por ID

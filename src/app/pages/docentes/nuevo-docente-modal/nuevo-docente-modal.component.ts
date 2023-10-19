@@ -52,21 +52,21 @@ export class NuevoDocenteModalComponent {
         this.closeModal();
         // Mostrar el mensaje de éxito durante 5 segundos (5000 ms)
         this.toastr.success('Docente creado con éxito', 'Éxito');
-      
-      // Retrasar la recarga de la página en 5 segundos
-        setTimeout(() => {
-          window.location.reload();
-      }, 2000);
+  
+
       },
       (error) => {
         console.error('Error al crear el docente:', error);
         this.toastr.error('ERROR: revise los campos' + error.name)
         
       })
+      setTimeout(() => {
+        this.router.navigate(['/docentes']);
+    }, 1000);
   }
 
   closeModal(){
-    this.modalService.$modal.emit(false);
+    this.modalService.$nuevoAlumno.emit(false);
   }
 
 }

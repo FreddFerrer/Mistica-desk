@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Alumno } from 'src/app/models/alumno';
+import { AlumnoService } from 'src/app/services/alumno.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -12,16 +14,19 @@ export class IndexComponent implements OnInit {
   isLogged = false;
   rol: string;
   rolTexto: string;
+  infoAlumno: Alumno;
 
   
 
-  constructor(private tokenService: TokenService, private router: Router) { }
+  constructor(private tokenService: TokenService, private router: Router,
+    private alumnoService: AlumnoService) { }
 
   ngOnInit() {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.rol = this.tokenService.getAuthority();
       this.rolTexto = this.convertirRolATexto(this.rol);
+      console.log(this.infoAlumno)
     } else {
       this.isLogged = false;
     }

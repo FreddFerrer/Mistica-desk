@@ -3,50 +3,69 @@
   <div class="ml-0 md:ml-60 p-4 absolute top-0 left-0 right-0 bottom-0 divPrincipal">
     <div class="block mt-10 text-center place-content-center ">
       <div *ngIf="rol === 'ROLE_AUTORIDAD'" class="w-full flex justify-center py-12" id="button">
-        <button (click)="openModal()"
+        <button (click)="openNuevoAlumnoModal()"
           class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Agregar
           alumno</button>
       </div>
       <div class="overflow-hidden rounded-lg border border-gray-200 shadow-xl m-5">
+        <div class="relative rounded-2xl bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:px-10">
+          <div class="mx-auto max-w-md">
+      
+      
+            <form action="" class="relative mx-auto w-max">
+              <input type="search" (keyup)="buscarAlumno($event)" 
+                    class="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-lime-300 focus:pl-16 focus:pr-4" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-lime-300 peer-focus:stroke-lime-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </form>
+      
+      
+          </div>
+        </div>
         <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nombre y Apellido</th>
-              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>
-              <!-- Acá irá una nueva columna, este es el título de esa columna                
-              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Materias</th>
-               -->
+              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Legajo</th>
+              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>                                    
+              <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900">Registrar Pago</th>
               <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-            <tr class="hover:bg-gray-50" *ngFor="let alumno of alumnos">
+            <tr class="hover:bg-gray-50" *ngFor="let alumno of alumnosFiltrados">
               <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                 <div class="relative h-10 w-10">
                   <img class="h-full w-full rounded-sm object-cover object-center"
-                    src="../../../assets/img/icons/usuario.png" alt="" />
+                    src="./assets/img/icons/usuario.png" alt="" />
                 </div>
                 <div class="text-sm">
                   <div class="font-medium text-gray-700"> <span>{{ alumno.nombreCompleto }}</span></div>
-                  <div class="text-gray-400"><span>{{ alumno.legajo }}</span></div>
+                  
                 </div>
               </th>
-
+              <td class="px-6 py-4">
+                <div class="text-gray-400"><span>{{ alumno.legajo }}</span></div>
+              </td>
               <td class="px-6 py-4"><span>{{ alumno.usuario.email }}</span></td>
               <!-- Acá irá el contenido de Materias que cursa el alumno
                 <td>Prueba</td>
                -->
-
+               <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
+                <button (click)="openNuevoPagoModal(alumno.id)"
+                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Registrar pago</button>
+               </td>
               <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
                 <div class="flex justify-end gap-4">
-                  <a href="#">
+                  <a >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
                       <path stroke-linecap="round" stroke-linejoin="round"
                         d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                     </svg>
                   </a>
-                  <a href="#">
+                  <a >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -63,8 +82,19 @@
 
 
 
-    <div *ngIf="modalSwitch == true">
+    <div *ngIf="modalSwitch1 == true">
       <app-alumnos-modal></app-alumnos-modal>
     </div>
+
+    
+      <div *ngIf="modalSwitch2 == true">
+        <app-pagos-modal [alumno] = "alumnoSeleccionado"></app-pagos-modal>
+        
+      </div>
+    
+
+
+    
+
   </div>
 </div>

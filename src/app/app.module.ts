@@ -17,6 +17,10 @@ import { InterceptorService } from './services/interceptor.service';
 import { AlumnosModalComponent } from './pages/alumnos/alumnos-modal/alumnos-modal.component';
 import { MateriasModalComponent } from './pages/materias/materias-modal/materias-modal.component';
 import { NuevoDocenteModalComponent } from './pages/docentes/nuevo-docente-modal/nuevo-docente-modal.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
+import { PagosModalComponent } from './pages/alumnos/pagos-modal/pagos-modal.component';
+import { SwitchService } from './services/switch.service';
+
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { NuevoDocenteModalComponent } from './pages/docentes/nuevo-docente-modal
     MateriasComponent,
     AlumnosModalComponent,
     MateriasModalComponent,
-    NuevoDocenteModalComponent
+    NuevoDocenteModalComponent,
+    PagosComponent,
+    PagosModalComponent,
+
+    
   ],
   imports: [
     BrowserModule,
@@ -47,6 +55,7 @@ import { NuevoDocenteModalComponent } from './pages/docentes/nuevo-docente-modal
       useClass: InterceptorService,
       multi: true,
     },
+    SwitchService,
   ],
   bootstrap: [AppComponent]
 })

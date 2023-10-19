@@ -6,6 +6,7 @@ import { AlumnosComponent } from './pages/alumnos/alumnos.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
 import { AlumnosModalComponent } from './pages/alumnos/alumnos-modal/alumnos-modal.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'alumnos', component: AlumnosComponent },
   { path: 'materias', component: MateriasComponent },
   { path: 'docentes', component: DocentesComponent },
+  { path: 'pagos', component: PagosComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   
 ]

@@ -14,7 +14,7 @@
             Educar para <br><span class="text-[#3498DB]">Tranformar</span>
           </h1>
           <div id="profile" class="space-y-3">
-            <img src="../../../assets/img/icons/usuario.png" alt="Avatar user" class="w-12  md:w-16 rounded mx-auto" />
+            <img src="./assets/img/icons/usuario.png" alt="Avatar user" class="w-12  md:w-16 rounded mx-auto" />
             <div>
               <h2 class="font-medium text-xs md:text-sm text-center text-[#3498DB]">
                 <span>{{ usuario }}</span>
@@ -27,29 +27,29 @@
           <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')" routerLink="/alumnos"
             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out flex flex-row justify-left align-center text-center">
             <!-- Si querés que el ícono en el sidebar sea más chico, solo modifica la clase w-10 por un número meno w-8 por ejemplo -->
-            <img class="w-10" src="../../../assets/img/icons/grupo.png" alt="">
+            <img class="w-10" src="./assets/img/icons/grupo.png" alt="">
             <span class="pt-2 pl-2">Alumnos</span>
           </a>
           <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE' || rol === 'ROLE_ESTUDIANTE')"
             routerLink="/materias" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out 
             flex flex-row justify-left align-center text-center">
-            <img class="w-10" src="../../../assets/img/icons/libro.png" alt="">
+            <img class="w-10" src="./assets/img/icons/libro.png" alt="">
             <span class="pt-2 pl-2">Materias</span>
           </a>
           <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'" routerLink="/docentes" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
-            <img class="w-10" src="../../../assets/img/icons/maestro.png" alt="">
+            <img class="w-10" src="./assets/img/icons/maestro.png" alt="">
             <span class="pt-2 pl-2">Docentes</span>
           </a>
-          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'" routerLink="/docentes" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
+          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD' || rol == 'ROLE_ESTUDIANTE'" routerLink="/pagos" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
-            <img class="w-10" src="../../../assets/img/icons/factura.png" alt="">
+            <img class="w-10" src="./assets/img/icons/factura.png" alt="">
             <span class="pt-2 pl-2">Pagos</span>
           </a>
 
           <a *ngIf="isLogged" (click)="onLogOut()" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
-            <img class="w-10" src="../../../assets/img/icons/puerta-de-salida.png" alt="">
+            <img class="w-10" src="./assets/img/icons/puerta-de-salida.png" alt="">
             <span class="pt-2 pl-2">Salir</span>
           </a>
         </div>

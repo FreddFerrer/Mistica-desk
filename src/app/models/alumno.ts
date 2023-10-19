@@ -1,5 +1,6 @@
 import { Asistencia } from "./asistencia";
 import { Calificacion } from "./calificacion";
+import { Pago } from "./pago";
 import { Usuario } from "./usuario";
 
 export class Alumno {
@@ -12,6 +13,7 @@ export class Alumno {
   asistencias: Asistencia[] | null;
   nombreCompleto: string;
   usuario: Usuario;
+  pagos: Pago;
 
 
   constructor(nombre: string, apellido: string, email: string){

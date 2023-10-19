@@ -21,6 +21,7 @@
     "@ionic/angular": "^7.4.0",
     "@ngneat/tailwind": "^7.0.3",
     "ngx-toastr": "^17.0.2",
+    "pdfmake": "^0.2.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
