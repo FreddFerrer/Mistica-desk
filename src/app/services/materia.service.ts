@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class MateriaService {
 
   private materiasUrl = 'http://localhost:8080/api/materias';
-  private materiasPorDocenteUrl = 'http://localhost:8080/api/materiasPorDocente';
-  private materiasPorAlumnoUrl = 'http://localhost:8080/api/materiasPorAlumno';
+  private materiasPorDocenteUrl = 'http://localhost:8080/api/materias/materiasPorDocente';
+  private materiasPorAlumnoUrl = 'http://localhost:8080/api/materias/materiasPorAlumno';
 
   constructor(private http: HttpClient) {}
 

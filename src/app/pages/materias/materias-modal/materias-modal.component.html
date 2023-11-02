@@ -1,2 +1,119 @@
+<app-menu></app-menu>
+
+<div class="flex justify-center align-center">
+    <div class="p-4 relative font-poppins w-screen divPrincipal h-screen ">
+        <div class="block mt-10 text-center place-content-center ">
+          <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+              <div class="overlay"  class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+          
+              <div x-cloak   class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                <div class="flex items-center justify-between space-x-4">
+                  <h1 class="text-xl font-medium text-gray-800">Agregar una materia</h1>
+                  <button (click)="closeNuevoAlumnoModal()" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                </div>
+                <form #materiasForm="ngForm" (ngSubmit)="insertar(materiasForm.value)" class="mt-5">
+                  <div>
+                    <label for="nombre" class="block text-sm text-gray-700  dark:text-gray-500">Nombre de la materia</label>
+                    <input [(ngModel)]="nombreMateria" name="nombreMateria" required type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                  </div>
+                  
+                  <div class="my-4">
+                    <label for="turno" class="block text-sm text-gray-700  dark:text-gray-500">Turno</label>
+                    <select [(ngModel)]="turno" (ngModelChange)="onTurnoChange()" name="turno" id="turno" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="Mañana">Mañana</option>
+                        <option value="Tarde">Tarde</option>
+                    </select>
+                  </div>
+                  <div class="my-4">
+                    <label for="anoEscolar" class="block text-sm text-gray-700  dark:text-gray-500">Año</label>
+                    <select [(ngModel)]="anoEscolar" name="anoEscolar" id="anoEscolar" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="horaEntrada" class="block text-sm text-gray-700  dark:text-gray-500">Horario entrada</label>
+                    <select *ngIf="turno == 'Mañana'" [(ngModel)]="horaEntrada" name="horaEntrada" id="horaEntrada" class="inline-block px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="08">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+
+                    <select *ngIf="turno == 'Tarde'"  [(ngModel)]="horaEntrada" name="horaEntrada" id="horaEntrada" class="inline-block px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="13">13</option>
+                        <option value="15">15</option>
+                        <option value="17">17</option>
+                        <option value="20">20</option>
+                        
+                    </select>
+
+                    <h3 class="inline-block px-3">Hs</h3>
+
+                    <label for="minutoEntrada" class="hidden"></label>
+
+                    <select [(ngModel)]="minutoEntrada" name="minutoEntrada"  id="minutoEntrada" class="inline-block  px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        
+                    </select>
+
+                    <h3 class="inline-block px-3">Minutos</h3>
+                </div>
+
+
+                  
+                <div>
+                    <label for="horaSalida" class="pt-3 block text-sm text-gray-700  dark:text-gray-500">Horario salida</label>
+                    <select [(ngModel)]="horaSalida" name="horaSalida" id="horaEntrada" class="inline-block px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                    <h3 class="inline-block px-3">Hs</h3>
+                    <label for="minutoSalida" class="hidden"></label>
+                    <select [(ngModel)]="minutoSalida" name="minutoSalida" id="minutoSalida" class="inline-block  px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option value="00">00</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                    </select>
+
+                    <h3 class="inline-block px-3">Minutos</h3>
+                </div>
+                  
+                  
+                  
+                  <div class="flex justify-end mt-6">
+                    <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                      Agregar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
 
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Alumno } from '../models/alumno';
 import { TokenService } from './token.service';
+import { Pago } from '../models/pago';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,11 @@ export class AlumnoService {
     const url = `${this.alumnossUrl}/${id}`;
     return this.http.delete<void>(url);
   }
+
+  registrarPago(alumnoId: number, monto: number): Observable<Pago> {
+    const url = `${this.alumnossUrl}/realizar-pago/${alumnoId}`;
+    const requestBody = { monto };
+    return this.http.post<Pago>(url, requestBody);
+  }
+  
 }

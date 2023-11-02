@@ -13,6 +13,7 @@
             <tr>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nombre y Apellido</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>
+              <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900">Materia</th>
               <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
@@ -29,6 +30,10 @@
                 </div>
               </th>
               <td class="px-6 py-4"><span>{{ docente.email }}</span></td>
+              <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
+                <button (click)="openAsignarMateriaModal(docente.id)"
+                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Asignar materia</button>
+               </td>
 
               <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
                 <div class="flex justify-end gap-4">
@@ -55,4 +60,8 @@
     </div>
     <div *ngIf="modalSwitch == true">
       <app-nuevo-docente-modal></app-nuevo-docente-modal>
+    </div>
+    <div *ngIf="asignarMateriaSwitch == true">
+      <app-asignar-materia-modal [docente] = "docenteSeleccionado"></app-asignar-materia-modal>
+      
     </div>

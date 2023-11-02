@@ -15,8 +15,10 @@ export class DocentesComponent {
 
   rol: string;
   docentes: Usuario[];
+  docenteSeleccionado: Usuario;
   isLogged = false;
   modalSwitch: boolean;
+  asignarMateriaSwitch: boolean;
 
 
   constructor(private tokenService: TokenService, private docenteService: DocenteService, 
@@ -27,6 +29,9 @@ export class DocentesComponent {
   ngOnInit() {
     this.modalService.$nuevoAlumno.subscribe( (valor) => {
       this.modalSwitch = valor;
+    } ),
+    this.modalService.$asignarDocente.subscribe( (valor) => {
+      this.asignarMateriaSwitch = valor;
     } )
     this.cargarDocentes();
     this.rol = this.tokenService.getAuthority();
@@ -38,8 +43,14 @@ export class DocentesComponent {
     this.modalSwitch = true;
   }
 
-  closeModal() {
-    this.modalSwitch = false;
+  openAsignarMateriaModal(docenteId: number){
+    this.docenteSeleccionado = this.docentes.find(docente => docente.id === docenteId);
+
+    if (this.docenteSeleccionado) {
+      this.modalService.$docenteSeleccionado.emit(this.docenteSeleccionado); 
+    }
+
+    this.asignarMateriaSwitch = true;
   }
 
   cargarDocentes(): void {

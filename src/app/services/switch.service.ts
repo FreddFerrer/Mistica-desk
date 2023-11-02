@@ -12,5 +12,11 @@ export class SwitchService {
 
   $nuevoPago = new EventEmitter<any>();
 
+  $asignarDocente = new EventEmitter<any>();
+
   $alumnoSeleccionado = new EventEmitter<any>();
+
+  $docenteSeleccionado = new EventEmitter<any>();
+
+  $nuevaMateria = new EventEmitter<any>();
 }

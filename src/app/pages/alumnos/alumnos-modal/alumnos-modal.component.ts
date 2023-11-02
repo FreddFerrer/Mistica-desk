@@ -44,17 +44,14 @@ export class AlumnosModalComponent implements OnInit {
     this.alumnoService.crearAlumno(nuevoAlumno).subscribe(
       (alumnoCreado) => {
         console.log('Alumno creado:', alumnoCreado);
-        this.closeModal();
         this.toastr.success('Alumno creado con éxito', 'Éxito'); 
+        this.closeModal();        
       },
       (error) => {
         this.toastr.error('ERROR: revise los campos' + error.name)
         console.error('Error al crear el alumno:', error);
         
       })
-      setTimeout(() => {
-        this.router.navigate(['/alumnos']);
-    }, 1000);
   }
 
   closeModal(){

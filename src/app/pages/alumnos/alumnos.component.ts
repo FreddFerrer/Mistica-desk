@@ -49,8 +49,6 @@ export class AlumnosComponent implements OnInit{
   openNuevoPagoModal(alumnoId: number) {  
     this.alumnoSeleccionado = this.alumnos.find(alumno => alumno.id === alumnoId);
 
-    
-
     if (this.alumnoSeleccionado) {
       this.modalService.$alumnoSeleccionado.emit(this.alumnoSeleccionado); 
       
@@ -58,16 +56,11 @@ export class AlumnosComponent implements OnInit{
     }
 
     this.modalSwitch2 = true;
-
-    
   }
 
   closeNuevoPagoModal() {
     this.modalSwitch2 = false;
   }
-
-  
-
 
   cargarAlumnos(): void {
     this.alumnoService.getAlumnos().subscribe(

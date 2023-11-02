@@ -48,21 +48,13 @@ export class NuevoDocenteModalComponent {
     this.docenteService.crearDocente(nuevoDocente).subscribe(
       (docenteCreado) => {
         console.log('Docente creado:', docenteCreado);
-        // Puedes hacer aquí cualquier acción adicional después de crear el comentario, si es necesario.
-        this.closeModal();
-        // Mostrar el mensaje de éxito durante 5 segundos (5000 ms)
         this.toastr.success('Docente creado con éxito', 'Éxito');
-  
-
+        this.closeModal();
       },
       (error) => {
         console.error('Error al crear el docente:', error);
-        this.toastr.error('ERROR: revise los campos' + error.name)
-        
+        this.toastr.error('ERROR: revise los campos' + error.name)   
       })
-      setTimeout(() => {
-        this.router.navigate(['/docentes']);
-    }, 1000);
   }
 
   closeModal(){

@@ -15,7 +15,7 @@ export class MateriasComponent {
   rol: string;
   materias: Materia[];
   isLogged = false;
-  modalSwitch: boolean;
+  modalAgregarMateria: boolean;
 
 
   constructor(private tokenService: TokenService, private materiaService: MateriaService, 
@@ -23,18 +23,19 @@ export class MateriasComponent {
 
   }
 
-  openModal() {
-    console.log('boton andaaaaa')
-    this.modalSwitch = true;
+
+
+  openNuevoAlumnoModal() {
+    this.modalAgregarMateria = true;
   }
 
-  closeModal() {
-    this.modalSwitch = false;
+  closeNuevoAlumnoModal() {
+    this.modalAgregarMateria = false;
   }
 
   ngOnInit() {
-    this.modalService.$nuevoAlumno.subscribe( (valor) => {
-      this.modalSwitch = valor;
+    this.modalService.$nuevaMateria.subscribe( (valor) => {
+      this.modalAgregarMateria = valor;
     } )
     this.cargarMaterias();
     this.rol = this.tokenService.getAuthority();
