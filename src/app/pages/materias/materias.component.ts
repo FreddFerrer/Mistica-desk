@@ -16,6 +16,7 @@ export class MateriasComponent {
   materias: Materia[];
   isLogged = false;
   modalAgregarMateria: boolean;
+  modalListaAlumnos: boolean;
 
 
   constructor(private tokenService: TokenService, private materiaService: MateriaService, 
@@ -23,7 +24,14 @@ export class MateriasComponent {
 
   }
 
+  openListaAlumnoModal() {
+    console.log("boto open lista modal")
+    this.modalListaAlumnos = true;
+  } 
 
+  closeListaAlumnoModal() {
+    this.modalListaAlumnos = false;
+  }
 
   openNuevoAlumnoModal() {
     this.modalAgregarMateria = true;
@@ -37,6 +45,9 @@ export class MateriasComponent {
     this.modalService.$nuevaMateria.subscribe( (valor) => {
       this.modalAgregarMateria = valor;
     } )
+    this.modalService.$listaAlumnosModal.subscribe((valor) => {
+      this.modalListaAlumnos = valor;
+    })
     this.cargarMaterias();
     this.rol = this.tokenService.getAuthority();
     this.isLogged = true;

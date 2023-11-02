@@ -10,60 +10,65 @@
       </div>
       <div class="flex flex-col">
         <div class="overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="inline-block min-w-full align-middle">
-                <div class="overflow-hidden ">
-                    <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                        <thead class="bg-gray-100 dark:bg-gray-700">
-                            <tr>
-                                
-                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    Materia
-                                </th>
-                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    Turno
-                                </th>
-                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    Entrada
-                                </th>
-                                <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                  Salida
-                              </th>
-                              <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Profesor
-                            </th>
-                                <th scope="col" class="p-4">
-                                    <span class="sr-only">Edit</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700" *ngFor="let materia of materias">
-                                <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                  {{ materia.nombreMateria }}
-                                </td>
-                                <td class="py-4 text-left pl-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                  {{ materia.turno }}
-                                </td>
-                                <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                  {{ materia.horarioEntrada }}
-                                </td>
-                                <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                  {{ materia.horarioSalida }}
-                                </td>
-                                <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                  <span *ngIf="materia.docente">
-                                    {{ materia.docente.nombre + " " + materia.docente.apellido }}
-                                  </span>
-                                </td>
-                                <td class="py-4 text-left pl-6 text-sm font-medium whitespace-nowrap">
-                                    <a  class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
+          <div class="inline-block min-w-full align-middle">
+            <div class="overflow-hidden ">
+              <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                <thead class="bg-gray-100 dark:bg-gray-700">
+                  <tr>
+
+                    <th scope="col"
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Materia
+                    </th>
+                    <th scope="col"
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Turno
+                    </th>
+                    <th scope="col"
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Entrada
+                    </th>
+                    <th scope="col"
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Salida
+                    </th>
+                    <th scope="col"
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Profesor
+                    </th>
+                    <th scope="col" class="p-4">
+                      <span class="sr-only">Edit</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                  <tr class="hover:bg-gray-100 dark:hover:bg-gray-700" *ngFor="let materia of materias">
+                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <button (click)="openListaAlumnoModal()">{{ materia.nombreMateria }}</button>
+                    </td>
+                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                      {{ materia.turno }}
+                    </td>
+                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{ materia.horarioEntrada }}
+                    </td>
+                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{ materia.horarioSalida }}
+                    </td>
+                    <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <span *ngIf="materia.docente">
+                        {{ materia.docente.nombre + " " + materia.docente.apellido }}
+                      </span>
+                    </td>
+                    <td class="py-4 text-left pl-6 text-sm font-medium whitespace-nowrap">
+                      <a class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -71,11 +76,9 @@
     <div *ngIf="modalAgregarMateria == true">
       <app-materias-modal></app-materias-modal>
     </div>
+    <div *ngIf="modalListaAlumnos == true">
+      <app-lista-alumnos-modal></app-lista-alumnos-modal>
+    </div>
 
   </div>
 </div>
-
-
-    
-
-    

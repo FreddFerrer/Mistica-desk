@@ -19,4 +19,6 @@ export class SwitchService {
   $docenteSeleccionado = new EventEmitter<any>();
 
   $nuevaMateria = new EventEmitter<any>();
+
+  $listaAlumnosModal = new EventEmitter<any>();
 }

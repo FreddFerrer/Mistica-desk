@@ -21,6 +21,7 @@ import { PagosComponent } from './pages/pagos/pagos.component';
 import { PagosModalComponent } from './pages/alumnos/pagos-modal/pagos-modal.component';
 import { SwitchService } from './services/switch.service';
 import { AsignarMateriaModalComponent } from './pages/docentes/asignar-materia-modal/asignar-materia-modal.component';
+import { ListaAlumnosModalComponent } from './pages/materias/lista-alumnos-modal/lista-alumnos-modal.component';
 
 
 
@@ -39,6 +40,7 @@ import { AsignarMateriaModalComponent } from './pages/docentes/asignar-materia-m
     PagosComponent,
     PagosModalComponent,
     AsignarMateriaModalComponent,
+    ListaAlumnosModalComponent,
 
     
   ],
