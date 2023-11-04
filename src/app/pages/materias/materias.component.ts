@@ -48,9 +48,25 @@ export class MateriasComponent {
     this.modalService.$listaAlumnosModal.subscribe((valor) => {
       this.modalListaAlumnos = valor;
     })
-    this.cargarMaterias();
-    this.rol = this.tokenService.getAuthority();
-    this.isLogged = true;
+
+    if (this.tokenService.getAuthority() === 'ROLE_DOCENTE') {
+      console.log('rol:', this.rol)
+      this.getMateriasPorDocente();
+    } else {
+      this.cargarMaterias();
+    }
+  }
+
+
+  getMateriasPorDocente(): void {
+    this.materiaService.getMateriasPorDocente().subscribe(
+      (materias) => {
+        this.materias = materias;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
 
