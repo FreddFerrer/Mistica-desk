@@ -17,6 +17,7 @@ export class MateriasComponent {
   isLogged = false;
   modalAgregarMateria: boolean;
   modalListaAlumnos: boolean;
+  materiaSeleccionada: Materia;
 
 
   constructor(private tokenService: TokenService, private materiaService: MateriaService, 
@@ -24,10 +25,21 @@ export class MateriasComponent {
 
   }
 
-  openListaAlumnoModal() {
-    console.log("boto open lista modal")
+  openListaAlumnoModal(idMateria: number) {
+
+    this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
+
+  if (this.materiaSeleccionada) {
+    this.modalService.$materiaSeleccionada.emit(this.materiaSeleccionada);
+
+    console.log("la materia seleccionada es: ", this.materiaSeleccionada);
+
     this.modalListaAlumnos = true;
+  } else {
+    console.error("No se encontró la materia con ID", idMateria);
+  }
   } 
+
 
   closeListaAlumnoModal() {
     this.modalListaAlumnos = false;

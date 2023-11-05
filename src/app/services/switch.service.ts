@@ -5,7 +5,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class SwitchService {
   
-
   constructor() { }
 
   $nuevoAlumno = new EventEmitter<any>();
@@ -21,4 +20,6 @@ export class SwitchService {
   $nuevaMateria = new EventEmitter<any>();
 
   $listaAlumnosModal = new EventEmitter<any>();
+
+  $materiaSeleccionada =  new EventEmitter<any>();
 }

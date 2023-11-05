@@ -11,6 +11,7 @@ import { Pago } from '../models/pago';
 export class AlumnoService {
 
   private alumnossUrl = 'http://localhost:8080/api/alumnos';
+  private alumnosPorMateriaUrl = 'http://localhost:8080/api/alumnos/por-materia/';
 
   constructor(private http: HttpClient,
      private tokenService: TokenService) {}
@@ -41,6 +42,11 @@ export class AlumnoService {
     const url = `${this.alumnossUrl}/realizar-pago/${alumnoId}`;
     const requestBody = { monto };
     return this.http.post<Pago>(url, requestBody);
+  }
+
+  getAlumnosPorMateria(materiaId: number): Observable<Alumno[]> {
+    const url = `${this.alumnosPorMateriaUrl}${materiaId}`;
+    return this.http.get<Alumno[]>(url);
   }
   
 }

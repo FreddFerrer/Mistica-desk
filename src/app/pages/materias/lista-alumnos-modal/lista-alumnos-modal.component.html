@@ -22,14 +22,34 @@
                                         d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </button>
-                            <table>
-                                <thead>
-                                    <td>Nombre</td>
-                                </thead>
-                                <tr *ngFor="let alumno in alumnosFiltrados">
-                                    {{alumno.nombreCompleto}}
-                                </tr>
-                            </table>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                              <div class="inline-block min-w-full align-middle">
+                                <div class="overflow-hidden ">
+                                  <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                    <thead class="bg-gray-100 dark:bg-gray-700">
+                                      <tr>
+                    
+                                        <th scope="col"
+                                          class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                          Nombre
+                                        </th>
+                                                                          
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr *ngFor="let alumno of alumnosDeLaMateria">
+                                            <td class="py-4 px-6 text-sm font-medium text-gray-700 dark:text-white">
+                                                {{ alumno.nombre }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
