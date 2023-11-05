@@ -35,9 +35,9 @@ export class MateriasComponent {
     console.log("la materia seleccionada es: ", this.materiaSeleccionada);
 
     this.modalListaAlumnos = true;
-  } else {
-    console.error("No se encontró la materia con ID", idMateria);
-  }
+    } else {
+      console.error("No se encontró la materia con ID", idMateria);
+    }
   } 
 
 
@@ -61,14 +61,28 @@ export class MateriasComponent {
       this.modalListaAlumnos = valor;
     })
 
-    if (this.tokenService.getAuthority() === 'ROLE_DOCENTE') {
+    this.rol = this.tokenService.getAuthority();
+
+    if (this.rol === 'ROLE_DOCENTE') {
       console.log('rol:', this.rol)
       this.getMateriasPorDocente();
+    } else if (this.rol === 'ROLE_ESTUDIANTE'){
+      this.getMateriasPorAlumno();
     } else {
       this.cargarMaterias();
     }
   }
 
+  getMateriasPorAlumno(): void {
+    this.materiaService.getMateriasPorAlumno().subscribe(
+      (materias) => {
+        this.materias = materias;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   getMateriasPorDocente(): void {
     this.materiaService.getMateriasPorDocente().subscribe(
@@ -91,5 +105,10 @@ export class MateriasComponent {
         console.log(err);
       }
     );
+  }
+
+  esDocenteOrAutoridad(): boolean {
+    this.rol = this.tokenService.getAuthority();
+    return this.rol === 'ROLE_DOCENTE' || this.rol === 'ROLE_AUTORIDAD';
   }
 }

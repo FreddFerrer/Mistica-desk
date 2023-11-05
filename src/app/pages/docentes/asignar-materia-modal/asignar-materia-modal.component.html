@@ -16,11 +16,11 @@
                     </svg>
                   </button>
                 </div>
-                <form #asignarMateriaForm="ngForm" (ngSubmit)="asignar(asignarMateriaForm.value)" class="mt-5">
+                <form #asignarMateriaForm="ngForm" (ngSubmit)="asignarDocenteAMateria()" class="mt-5">
                   <div class="my-4">
                     <label for="materia" class="block text-sm text-gray-700  dark:text-gray-500">Materia</label>
-                    <select  name="turno" id="turno" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                        <option *ngFor="let materia of materias" >{{ materia.nombreMateria }}</option>
+                    <select  name="materia" id="materia" [(ngModel)]="materiaSeleccionada" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <option *ngFor="let materia of materias" [value]="materia.id" >{{ materia.nombreMateria }}</option>
                     </select>
                   </div>   
                   <div class="flex justify-end mt-6">

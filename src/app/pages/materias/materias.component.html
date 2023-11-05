@@ -44,7 +44,12 @@
                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   <tr class="hover:bg-gray-100 dark:hover:bg-gray-700" *ngFor="let materia of materias">
                     <td class="py-4 text-left pl-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      <button (click)="openListaAlumnoModal(materia.id)" >{{ materia.nombreMateria }}</button>
+                      <button *ngIf="esDocenteOrAutoridad()" (click)="openListaAlumnoModal(materia.id)">
+                        {{ materia.nombreMateria }}
+                      </button>
+                      <span *ngIf="!esDocenteOrAutoridad()">
+                        {{ materia.nombreMateria }}
+                      </span>
                     </td>
                     <td class="py-4 text-left pl-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                       {{ materia.turno }}

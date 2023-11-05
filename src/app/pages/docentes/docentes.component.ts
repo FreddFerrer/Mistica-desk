@@ -39,7 +39,6 @@ export class DocentesComponent {
   }
 
   openModal() {
-    console.log('boton andaaaaa2')
     this.modalSwitch = true;
   }
 

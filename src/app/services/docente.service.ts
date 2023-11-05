@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Materia } from '../models/materia';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +40,11 @@ export class DocenteService {
     const url = `${this.docentesUrl}/${id}`;
     return this.http.delete<void>(url);
   }
+
+  //Asignar docente a materia
+  asignarDocenteAMateria(materiaId: number, docenteId: number): Observable<Materia>{
+    const url = `${this.docentesUrl}/${materiaId}/agregar-docente/${docenteId}`;
+    return this.http.post<Materia>(url, null);
+  }
+   
 }

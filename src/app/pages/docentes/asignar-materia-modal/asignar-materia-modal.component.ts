@@ -4,6 +4,8 @@ import { Usuario } from 'src/app/models/usuario';
 import { SwitchService } from '../../../services/switch.service';
 import { MateriaService } from 'src/app/services/materia.service';
 import { TokenService } from 'src/app/services/token.service';
+import { DocenteService } from 'src/app/services/docente.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-asignar-materia-modal',
@@ -16,13 +18,15 @@ export class AsignarMateriaModalComponent implements OnInit{
   nombre: string;
   apellido: string;
   materias: Materia[];
-  materia: Materia;
+  materiaSeleccionada: number;
   rol: string;
   isLogged: boolean;
 
   constructor(private modalService: SwitchService,
     private materiaService: MateriaService,
-    private tokenService: TokenService) {
+    private tokenService: TokenService,
+    private docenteService: DocenteService,
+    private toastr: ToastrService) {
     
   }
 
@@ -42,9 +46,22 @@ export class AsignarMateriaModalComponent implements OnInit{
     this.apellido = docente.apellido;
 }
 
-  asignar(materia: Materia){
+asignarDocenteAMateria() {
+  const docenteId = this.docente.id;
+  const materiaId = this.materiaSeleccionada;
 
-  }
+  this.docenteService.asignarDocenteAMateria(materiaId, docenteId).subscribe(
+    (response) => {
+      this.toastr.success(`Docente asignado con éxito a ${response.nombreMateria}`, 'Éxito');
+      this.closeAsignarMateriaModal();
+    },
+    (error) => {
+      this.toastr.error('ERROR: los campos no deben estar vacios' + error.name)  
+    }
+  );
+}
+
+
 
   closeAsignarMateriaModal(){
     this.modalService.$asignarDocente.emit(false);
