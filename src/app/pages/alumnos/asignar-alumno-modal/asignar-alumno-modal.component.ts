@@ -21,7 +21,7 @@ export class AsignarAlumnoModalComponent {
     
   }
 
-  asignarDocenteAMateria(): void {
+  asignarAlumnoAMateria(): void {
 
   }
 

@@ -4,7 +4,6 @@ import { Pago } from 'src/app/models/pago';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { TokenService } from 'src/app/services/token.service';
 import { PagoService } from '../../services/pago.service';
-import { RolEnum } from '../../models/rol-enum';
 
 
 @Component({
@@ -74,6 +73,7 @@ export class PagosComponent implements OnInit {
     await this.cargarPdfMaker();
 
     
+
     const pdfDefinition: any = {
       
       
