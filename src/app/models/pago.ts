@@ -1,6 +1,7 @@
 import { Alumno } from "./alumno";
 
 export class Pago {
+    id: number;
     fechaPago: Date;
     monto: number;
     alumno: Alumno;

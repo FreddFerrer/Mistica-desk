@@ -18,6 +18,9 @@ export class PagosComponent implements OnInit {
   alumnos: Alumno[];
   isLogged = false;
   pdfMake: any;
+  anchoPagina = 595;
+  margen = 20;
+  anchoColor = (this.anchoPagina - (4 * this.margen)) / 5;
 
   constructor(private tokenService: TokenService, private pagoService: PagoService, private alumnoService: AlumnoService) {}
 
@@ -25,10 +28,12 @@ export class PagosComponent implements OnInit {
     this.rol = this.tokenService.getAuthority();
     this.isLogged = true;
 
-    if (this.tokenService.getAuthority() === 'ROLE_ESTUDIANTE') {
+    this.rol = this.tokenService.getAuthority();
+
+    if ( this.rol === 'ROLE_ESTUDIANTE') {
       console.log('rol:', this.rol)
       this.getPagosPorAlumno();
-    } else {
+    } else if (this.rol === 'ROLE_AUTORIDAD') {
       this.getPagos();
     }
   }
@@ -67,77 +72,146 @@ export class PagosComponent implements OnInit {
 
   async createPdf(infoPago: Pago){
     await this.cargarPdfMaker();
+
+    
     const pdfDefinition: any = {
       
       
       content: [
         {
-          text: 'RECIBO DE PAGO - AFIP',
-          fontSize: 24,
+          canvas: [
+            {
+              type: 'rect',
+              x: this.margen,
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#00BFFF'
+            },
+            {
+              type: 'rect',
+              x: this.margen + this.anchoColor,
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#00FF00'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (2 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#FFA500'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (3 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#800080'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (4 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#FF69B4'
+            }
+          ],
+          alignment: 'right',
+        },
+        {
+          text: 'EDUCAR - RECIBO DE PAGO',
+          fontSize: 20,
           bold: true,
           alignment: 'center',
-          margin: [0, 0, 0, 20],
-          color: '#001f3f'
+          margin: [0, 30, 0, 30]
+        },
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            widths: [250, 250],
+            body: [
+              [{text: 'DATOS', bold: true, alignment: 'center'}, {text: 'DESCRIPCION', bold: true, alignment: 'center'}],
+              ['NOMBRE Y APELLIDO', infoPago.alumno.nombreCompleto],
+              ['LEGAJO', infoPago.alumno.legajo],
+              ['EMAIL', infoPago.alumno.email],
+              ['MONTO', infoPago.monto],
+              ['MES', infoPago.fechaPago.getMonth],
+              ['AÑO', infoPago.fechaPago.getFullYear]
+            ]
+          },
+          fontSize: 16,
+        },
+        {
+          text: 'En EDUCAR, valoramos profundamente la confianza que depositan en nosotros ' +
+          'para la educación de su hijo/a ' + infoPago.alumno.nombreCompleto + '.\nSu compromiso con ' +
+          'su educación es inspirador y fundamental para su crecimiento. Juntos, estamos ' +
+          'construyendo un camino hacia el conocimiento y el éxito.\nSeguiremos dedicando ' +
+          'nuestros esfuerzos para brindarle la mejor formación posible. Agradecemos su ' +
+          'continua confianza en nosotros.\nAtentamente,  Rectorado.',
+          fontSize: 16,
+          margin: [0, 30, 0, 30],
+          alignment: 'justify',
+          lineHeight: 1.5
+        },
+        {
+          text: 'N° de Recibo: ' + infoPago.id + '\nFecha de Emision: '  +
+          '\nMedio de Pago: Transaccion Virtual',
+          fontSize: 16,
+          alignment: 'right',
+          margin: [0, 0, 0, 5],
+          lineHeight: 1.5
         },
         {
           canvas: [
             {
               type: 'rect',
-              x: 0,
-              y: 0,
-              w: 500,
-              h: 20,
-              r: 5,
-              color: '#001f3f'
-              
-            }
-          ]
-        },
-        {
-          text: 'NOMBRE Y APELLIDO: ' + (infoPago.alumno.nombre + ' ' + infoPago.alumno.apellido),
-          fontSize: 16,
-          margin: [10, 10, 0, 10],
-          color: '#001f3f'
-        },
-        {
-          text: 'LEGAJO: ' + infoPago.alumno.legajo,
-          fontSize: 16,
-          margin: [10, 5, 0, 10],
-          color: '#001f3f'
-        },
-        {
-          text: 'EMAIL: ' + infoPago.alumno.usuario.email,
-          fontSize: 16,
-          margin: [10, 5, 0, 10],
-          color: '#001f3f'
-        },
-        {
-          text: 'MONTO: ' + infoPago.monto,
-          fontSize: 16,
-          margin: [10, 5, 0, 10],
-          color: '#001f3f'
-        },
-        {
-          text: 'FECHA: ' + infoPago.fechaPago,
-          fontSize: 16,
-          margin: [10, 5, 0, 10],
-          color: '#001f3f'
-        },
-        {
-          canvas: [
+              x: this.margen,
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#00BFFF'
+            },
             {
               type: 'rect',
-              x: 0,
-              y: 0,
-              w: 500,
-              h: 20,
-              r: 5,
-              color: '#001f3f'
-              
+              x: this.margen + this.anchoColor,
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#00FF00'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (2 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#FFA500'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (3 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#800080'
+            },
+            {
+              type: 'rect',
+              x: this.margen + (4 * this.anchoColor),
+              y: this.margen,
+              w: this.anchoColor,
+              h: 40,
+              color: '#FF69B4'
             }
-          ]
-        }
-      ],
+          ],
+          alignment: 'right',
+        },
+      ]
 
     }
 

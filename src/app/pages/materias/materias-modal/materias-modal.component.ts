@@ -3,10 +3,11 @@ import { Materia } from 'src/app/models/materia';
 import { SwitchService } from 'src/app/services/switch.service';
 import { TokenService } from '../../../services/token.service';
 
-import { DocenteService } from 'src/app/services/docente.service';
+
 import { Usuario } from 'src/app/models/usuario';
 import { MateriaService } from 'src/app/services/materia.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 
@@ -35,7 +36,8 @@ export class MateriasModalComponent implements OnInit {
 
   constructor(private modalService: SwitchService, private tokenService: TokenService,
     private materiaService: MateriaService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private router: Router) {
     
   }
 
@@ -79,10 +81,11 @@ export class MateriasModalComponent implements OnInit {
         console.log('Materia creada con éxito:', response);
         this.closeNuevoAlumnoModal();
         this.toastr.success('Materia creada con éxito', 'Éxito');
+        this.router.navigate(['materias']);
         
       },
       (error) => {
-        // Maneja los errores de la solicitud aquí
+        
         console.error('Error al crear la materia:', error);
         this.toastr.error('Campos vacios u horarios incorrectos', 'Error');
       }

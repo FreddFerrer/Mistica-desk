@@ -45,7 +45,8 @@ export class AlumnosModalComponent implements OnInit {
       (alumnoCreado) => {
         console.log('Alumno creado:', alumnoCreado);
         this.toastr.success('Alumno creado con éxito', 'Éxito'); 
-        this.closeModal();        
+        this.closeModal();
+        this.router.navigate(['alumnos']);        
       },
       (error) => {
         this.toastr.error('ERROR: revise los campos' + error.name)
