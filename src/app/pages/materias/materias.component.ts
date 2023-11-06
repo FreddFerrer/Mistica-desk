@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Materia } from 'src/app/models/materia';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { MateriaService } from 'src/app/services/materia.service';
@@ -26,37 +26,6 @@ export class MateriasComponent {
 
   }
 
-  openListaAlumnoModal(idMateria: number) {
-
-    this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
-
-    if (this.materiaSeleccionada) {
-      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada.id);
-
-      console.log("la materia seleccionada es: ", this.materiaSeleccionada.id);
-
-      this.modalListaAlumnos = true;
-    } else {
-      console.error("No se encontró la materia con ID", idMateria);
-    }
-  } 
-
-  openImprimirMaterias() {
-    this.modalImprimirMaterias = true;
-  }
-
-  closeListaAlumnoModal() {
-    this.modalListaAlumnos = false;
-  }
-
-  openNuevoAlumnoModal() {
-    this.modalAgregarMateria = true;
-  }
-
-  closeNuevoAlumnoModal() {
-    this.modalAgregarMateria = false;
-  }
-
   ngOnInit() {
     this.modalService.$nuevaMateria.subscribe( (valor) => {
       this.modalAgregarMateria = valor;
@@ -76,6 +45,41 @@ export class MateriasComponent {
       this.cargarMaterias();
     }
   }
+
+  openListaAlumnoModal(idMateria: number) {
+
+    this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
+
+    if (this.materiaSeleccionada) {
+      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada.id);
+
+      console.log("la materia seleccionada es: ", this.materiaSeleccionada.id);
+
+      this.modalListaAlumnos = true;
+    } else {
+      console.error("No se encontró la materia con ID", idMateria);
+    }
+  }
+
+  openImprimirMaterias() {
+    this.modalImprimirMaterias = true;
+  }
+  closeImprimirMaterias(){
+    this.modalImprimirMaterias = false
+  }
+
+  closeListaAlumnoModal() {
+    this.modalListaAlumnos = false;
+  }
+
+  openNuevoAlumnoModal() {
+    this.modalAgregarMateria = true;
+  }
+
+  closeNuevoAlumnoModal() {
+    this.modalAgregarMateria = false;
+  }
+
 
   getMateriasPorAlumno(): void {
     this.materiaService.getMateriasPorAlumno().subscribe(

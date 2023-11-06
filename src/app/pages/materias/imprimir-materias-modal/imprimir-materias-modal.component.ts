@@ -10,6 +10,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 export class ImprimirMateriasModalComponent implements OnInit {
   rol: string;
+  pdfMake: any;
 
   constructor(private tokenkenServices: TokenService, private modalService: SwitchService) {
 
@@ -23,5 +24,12 @@ export class ImprimirMateriasModalComponent implements OnInit {
     console.log("crear pdf")
   }
 
-  pagos: string
+  async cargarPdfMaker() {
+    if (!this.pdfMake) {
+      const pdfMakeModule = await import('pdfmake/build/pdfmake');
+      const pdfFontsModule = await import('pdfmake/build/vfs_fonts');
+      this.pdfMake = pdfMakeModule.default;
+      this.pdfMake.vfs = pdfFontsModule.default.pdfMake.vfs;
+    }
+  }
 }

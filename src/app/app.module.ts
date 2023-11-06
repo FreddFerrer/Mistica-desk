@@ -22,11 +22,7 @@ import { PagosModalComponent } from './pages/alumnos/pagos-modal/pagos-modal.com
 import { SwitchService } from './services/switch.service';
 import { AsignarMateriaModalComponent } from './pages/docentes/asignar-materia-modal/asignar-materia-modal.component';
 import { ListaAlumnosModalComponent } from './pages/materias/lista-alumnos-modal/lista-alumnos-modal.component';
-<<<<<<< HEAD
 import { ImprimirMateriasModalComponent } from './pages/materias/imprimir-materias-modal/imprimir-materias-modal.component';
-=======
-import { AsignarAlumnoModalComponent } from './pages/alumnos/asignar-alumno-modal/asignar-alumno-modal.component';
->>>>>>> fbba25086a7d4b8f61c55be9143c28e2b9884be6
 
 
 
@@ -46,11 +42,7 @@ import { AsignarAlumnoModalComponent } from './pages/alumnos/asignar-alumno-moda
     PagosModalComponent,
     AsignarMateriaModalComponent,
     ListaAlumnosModalComponent,
-<<<<<<< HEAD
     ImprimirMateriasModalComponent,
-=======
-    AsignarAlumnoModalComponent,
->>>>>>> fbba25086a7d4b8f61c55be9143c28e2b9884be6
 
     
   ],
