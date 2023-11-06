@@ -22,6 +22,8 @@ export class SwitchService {
 
   $listaAlumnosModal = new EventEmitter<any>();
 
+  $asignarAlumno = new EventEmitter<any>();
+
 
   private materiaSeleccionadaSubject = new BehaviorSubject<number | null>(null);
   $materiaSeleccionada = this.materiaSeleccionadaSubject.asObservable();

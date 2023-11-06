@@ -50,5 +50,11 @@ export class MateriaService {
     return this.http.delete<void>(url);
   }
 
+  //Asignar alumno a materia
+  asignarAlumnoAMateria(materiaId: number, alumnoId: number): any {
+    const url = `${this.materiasUrl}/${materiaId}/agregar-alumno/${alumnoId}`;
+    return this.http.post<any>(url, null);
+  }
+
 }
 

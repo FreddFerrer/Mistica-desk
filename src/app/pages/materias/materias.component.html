@@ -36,8 +36,11 @@
                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                       Profesor
                     </th>
-                    <th scope="col" class="p-4">
-                      <span class="sr-only">Edit</span>
+                    <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Inscribir
+                    </th>
+                    <th *ngIf="rol === 'ROLE_DOCENTE' || rol === 'ROLE_AUTORIDAD'" scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      Imprimir
                     </th>
                   </tr>
                 </thead>
@@ -65,8 +68,11 @@
                         {{ materia.docente.nombre + " " + materia.docente.apellido }}
                       </span>
                     </td>
-                    <td class="py-4 text-left pl-6 text-sm font-medium whitespace-nowrap">
-                      <a class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="py-4 text-left pl-6 text-sm font-medium whitespace-nowrap">
+                      <a (click)="openAsignarAlumnoModal(materia.id)" class="text-blue-600 dark:text-blue-500 hover:underline">Inscribir alumno</a>
+                    </td>
+                    <td *ngIf="rol === 'ROLE_DOCENTE' || rol === 'ROLE_AUTORIDAD'" class="py-4 text-left pl-6 text-sm font-medium whitespace-nowrap">
+                      <a (click)="createPdf(materia)" class="text-blue-600 dark:text-blue-500 hover:underline">Imprimir alumnos</a>
                     </td>
                   </tr>
 
@@ -88,6 +94,9 @@
     </div>
     <div *ngIf="modalListaAlumnos == true">
       <app-lista-alumnos-modal></app-lista-alumnos-modal>
+    </div>
+    <div *ngIf="modalAsignarAlumno == true">
+      <app-asignar-alumno-modal [materia]="materiaSeleccionada"></app-asignar-alumno-modal>
     </div>
 
   </div>
