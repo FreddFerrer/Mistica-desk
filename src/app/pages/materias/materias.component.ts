@@ -18,6 +18,7 @@ export class MateriasComponent {
   modalAgregarMateria: boolean;
   modalListaAlumnos: boolean;
   materiaSeleccionada: Materia;
+  modalImprimirMaterias: boolean
 
 
   constructor(private tokenService: TokenService, private materiaService: MateriaService, 
@@ -40,6 +41,9 @@ export class MateriasComponent {
     }
   } 
 
+  openImprimirMaterias() {
+    this.modalImprimirMaterias = true;
+  }
 
   closeListaAlumnoModal() {
     this.modalListaAlumnos = false;

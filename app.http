@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/materias/setear-calificacion/4/alumno/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWN0b3IiLCJpYXQiOjE2OTg5ODQxMDIsImV4cCI6MTY5OTA3MDUwMn0.XZbXBwQDh6CMcFZkWGSdo0zw2fCOibqwpXurxo2H2Ps
+
+{
+    "nota": 64.5
+}

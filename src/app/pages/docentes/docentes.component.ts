@@ -19,6 +19,7 @@ export class DocentesComponent {
   isLogged = false;
   modalSwitch: boolean;
   asignarMateriaSwitch: boolean;
+  docenteFiltrados: Usuario[]
 
 
   constructor(private tokenService: TokenService, private docenteService: DocenteService, 
@@ -59,6 +60,7 @@ export class DocentesComponent {
           ...docente,
           nombreCompleto: `${docente.nombre} ${docente.apellido}`
         }));
+        this.docenteFiltrados = this.docentes
       },
       err => {
         console.log(err);
@@ -66,5 +68,13 @@ export class DocentesComponent {
     );
   }
 
+  buscarDocente(event: KeyboardEvent) {
+    const valor = (event.target as HTMLInputElement).value;
+    
+    // Filtra los alumnos según la búsqueda o muestra todos los alumnos si la búsqueda está vacía.
+    this.docenteFiltrados = valor === ''
+      ? this.docentes
+      : this.docentes.filter(docente => docente.nombre.toLowerCase().includes(valor.toLowerCase()));
+  }
 }
 
