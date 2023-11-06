@@ -18,6 +18,7 @@ export class AlumnosComponent implements OnInit{
   isLogged = false;
   modalSwitch1: boolean;
   modalSwitch2: boolean;
+  modalSwitch3: boolean;
   
   constructor(private tokenService: TokenService, private alumnoService: AlumnoService, 
     private modalService: SwitchService) {
@@ -75,6 +76,18 @@ export class AlumnosComponent implements OnInit{
         console.log(err);
       }
     );
+  }
+
+  openAsignarAlumno(alumnoId: number): void {
+    this.alumnoSeleccionado = this.alumnos.find(alumno => alumno.id === alumnoId);
+
+    if (this.alumnoSeleccionado) {
+      this.modalService.$alumnoSeleccionado.emit(this.alumnoSeleccionado); 
+      
+      console.log('el nombre es ', this.alumnoSeleccionado)
+    }
+
+    this.modalSwitch3 = true;
   }
 
   buscarAlumno(event: KeyboardEvent) {

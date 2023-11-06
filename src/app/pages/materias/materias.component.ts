@@ -30,12 +30,12 @@ export class MateriasComponent {
 
     this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
 
-  if (this.materiaSeleccionada) {
-    this.modalService.$materiaSeleccionada.emit(this.materiaSeleccionada);
+    if (this.materiaSeleccionada) {
+      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada.id);
 
-    console.log("la materia seleccionada es: ", this.materiaSeleccionada);
+      console.log("la materia seleccionada es: ", this.materiaSeleccionada.id);
 
-    this.modalListaAlumnos = true;
+      this.modalListaAlumnos = true;
     } else {
       console.error("No se encontró la materia con ID", idMateria);
     }

@@ -29,10 +29,16 @@
             <tr>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nombre y Apellido</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Legajo</th>
+<<<<<<< HEAD
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>
               <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900">Registrar
                 Pago</th>
               <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+=======
+              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>                                    
+              <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900">Registrar Pago</th>
+              <th *ngIf="rol === 'ROLE_AUTORIDAD'" scope="col" class="px-6 py-4 font-medium text-gray-900">Asignar materia</th>
+>>>>>>> fbba25086a7d4b8f61c55be9143c28e2b9884be6
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -51,6 +57,7 @@
                 <div class="text-gray-400"><span>{{ alumno.legajo }}</span></div>
               </td>
               <td class="px-6 py-4"><span>{{ alumno.usuario.email }}</span></td>
+<<<<<<< HEAD
               <!-- Acá irá el contenido de Materias que cursa el alumno
                 <td>Prueba</td>
                -->
@@ -58,6 +65,15 @@
                 <button (click)="openNuevoPagoModal(alumno.id)"
                   class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Registrar
                   pago</button>
+=======
+              <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
+                <button (click)="openNuevoPagoModal(alumno.id)"
+                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Registrar pago</button>
+              </td>
+              <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
+                <button (click)="openAsignarAlumno(alumno.id)"
+                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition shadow-xl duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Asignar materia</button>
+>>>>>>> fbba25086a7d4b8f61c55be9143c28e2b9884be6
               </td>
               <td *ngIf="rol === 'ROLE_AUTORIDAD'" class="px-6 py-4">
                 <div class="flex justify-end gap-4">
