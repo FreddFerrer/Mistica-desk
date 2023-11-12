@@ -169,7 +169,7 @@ export class MateriasComponent implements OnInit{
   
   for (var i = 0; i < materia.alumnos.length; i++) {
     const alumnoA = materia.alumnos[i];
-    body.push([alumnoA.legajo, alumnoA.nombreCompleto]);
+    body.push([alumnoA.legajo, (alumnoA.nombre + ' '+ alumnoA.apellido)]);
   }
   
   const tablaAlumnos = {
