@@ -17,6 +17,10 @@ export class ListaAlumnosModalComponent implements OnInit{
   idMateria: number;
   alumnosDeLaMateria: Alumno[];
   materiaSeleccionada: Materia;
+  resultadoExamenUno: boolean=false;
+  resultadoExamenDos: boolean=false;
+  resultadoExamenFinal: boolean=false;
+  examenUno: number = 0
 
 
   constructor(private modalService: SwitchService, private tokenService: TokenService,
@@ -57,5 +61,25 @@ export class ListaAlumnosModalComponent implements OnInit{
     );
   }
   
+  guardarExamenUno() { 
+    if (this.validarRango(this.examenUno)) {
+      this.resultadoExamenUno = true;
+      alert('Calificación guardada correctamente');
+    } else {
+      console.log('La calificación debe estar entre 0 y 100');
+    }
+    
+  }
 
+  guardarExamenDos() {
+    this.resultadoExamenDos = true
+  }
+
+  guardarExamenFinal() {
+    this.resultadoExamenFinal = true
+  }
+
+  validarRango(valor: number): boolean {
+    return valor >= 0 && valor <= 100;
+  }
 }

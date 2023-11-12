@@ -25,30 +25,77 @@
                         </div>
                         <div class="flex flex-col">
                             <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                              <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden ">
-                                  <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                                    <thead class="bg-gray-100 dark:bg-gray-700">
-                                      <tr>
-                    
-                                        <th scope="col"
-                                          class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                          Nombre
-                                        </th>
-                                                                          
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr *ngFor="let alumno of alumnosDeLaMateria">
-                                            <td class="py-4 px-6 text-sm font-medium">
-                                                {{ alumno.nombreCompleto }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
+                                <div class="inline-block min-w-full align-middle">
+                                    <div class="overflow-hidden ">
+                                        <form #calificacionForm="ngForm" class="mt-5">
+                                            <table
+                                                class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                                    <tr>
+                                                        <th scope="col"
+                                                            class="w-16 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                                            Nombre
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="w-16 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                                            Examen 1
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="w-16 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                                            Examen 2
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="w-16 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                                            Final
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="w-16 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let alumno of alumnosDeLaMateria">
+                                                        <td class="py-4 px-6 text-sm font-medium">
+                                                            {{ alumno.nombreCompleto }}
+                                                        </td>
+                                                        <td class="max-w-[50px] py-4 px-6 text-sm font-medium">
+                                                            <input [(ngModel)]="examenUno" for="examen1"
+                                                                class="max-w-[100px]" type="number" required
+                                                                placeholder="Calificación" max="100" min="0"
+                                                                [disabled]="resultadoExamenUno">
+                                                            <button (click)="guardarExamenUno()"
+                                                                *ngIf="!resultadoExamenUno" [ngClass]="{
+                                                                'none': resultadoExamenUno == true}"
+                                                                class=" shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Guardar</button>
+
+                                                        </td>
+                                                        <td class="max-w-[30px] py-4 px-6 text-sm font-medium">
+                                                            <input class="max-w-[100px]" type="number" required
+                                                                max="100" min="0" placeholder="Calificación"
+                                                                [disabled]="resultadoExamenDos">
+                                                            <button (click)="guardarExamenDos()"
+                                                                *ngIf="!resultadoExamenDos" [ngClass]="{
+                                                                'none': resultadoExamenDos == true}"
+                                                                class=" shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Guardar</button>
+
+                                                        </td>
+                                                        <td class="max-w-[30px] py-4 px-6 text-sm font-medium">
+                                                            <input (click)="guardarExamenFinal()" class="max-w-[100px]"
+                                                                type="number" required placeholder="Calificación"
+                                                                max="100" min="0" [disabled]="resultadoExamenFinal">
+                                                            <button *ngIf="!resultadoExamenFinal" [ngClass]="{
+                                                                'none': resultadoExamenFinal == true}"
+                                                                class=" shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Guardar</button>
+
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
                         </div>
                     </div>
