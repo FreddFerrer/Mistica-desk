@@ -27,7 +27,7 @@
                             <div class="overflow-x-auto shadow-md sm:rounded-lg">
                                 <div class="inline-block min-w-full align-middle">
                                     <div class="overflow-hidden ">
-                                        <form #calificacionForm="ngForm" class="mt-5">
+                                        <form #calificacionForm="ngForm" (ngSubmit)="insertar()" class="mt-5">
                                             <table
                                                 class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                                                 <thead class="bg-gray-100 dark:bg-gray-700">
@@ -60,9 +60,9 @@
                                                             {{ alumno.nombreCompleto }}
                                                         </td>
                                                         <td class="max-w-[50px] py-4 px-6 text-sm font-medium">
-                                                            <input [(ngModel)]="examenUno" for="examen1"
-                                                                class="max-w-[100px]" type="number" required
-                                                                placeholder="Calificación" max="100" min="0"
+                                                            <input [(ngModel)]="examenUno" for="examenUno"
+                                                                name="examenUno" class="max-w-[100px]" type="number"
+                                                                required placeholder="Calificación" max="100" min="0"
                                                                 [disabled]="resultadoExamenUno">
                                                             <button (click)="guardarExamenUno()"
                                                                 *ngIf="!resultadoExamenUno" [ngClass]="{
@@ -71,8 +71,9 @@
 
                                                         </td>
                                                         <td class="max-w-[30px] py-4 px-6 text-sm font-medium">
-                                                            <input class="max-w-[100px]" type="number" required
-                                                                max="100" min="0" placeholder="Calificación"
+                                                            <input [(ngModel)]="examenDos" for="examenDos"
+                                                                class="max-w-[100px]" type="number" required max="100"
+                                                                min="0" placeholder="Calificación"
                                                                 [disabled]="resultadoExamenDos">
                                                             <button (click)="guardarExamenDos()"
                                                                 *ngIf="!resultadoExamenDos" [ngClass]="{
@@ -81,7 +82,8 @@
 
                                                         </td>
                                                         <td class="max-w-[30px] py-4 px-6 text-sm font-medium">
-                                                            <input (click)="guardarExamenFinal()" class="max-w-[100px]"
+                                                            <input [(ngModel)]="examenFinal" for="examenFinal"
+                                                                (click)="guardarExamenFinal()" class="max-w-[100px]"
                                                                 type="number" required placeholder="Calificación"
                                                                 max="100" min="0" [disabled]="resultadoExamenFinal">
                                                             <button *ngIf="!resultadoExamenFinal" [ngClass]="{
