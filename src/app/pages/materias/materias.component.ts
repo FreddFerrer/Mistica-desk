@@ -218,7 +218,7 @@ export class MateriasComponent implements OnInit{
   
       body.push([{text: 'LEGAJO', bold: true, alignment: 'center', fillColor: '#4682B4'}, {text: 'ALUMNO', bold: true, alignment: 'center', fillColor: '#4682B4'}]);
   
-  for (var i = 0; i < materia.alumnos.length; i++) {
+    for (var i = 0; i < materia.alumnos.length; i++) {
     const alumnoA = materia.alumnos[i];
     body.push([alumnoA.legajo, (alumnoA.nombre + ' '+ alumnoA.apellido)]);
   }
@@ -237,10 +237,10 @@ export class MateriasComponent implements OnInit{
       }
     };
 
-      await this.cargarPdfMaker();
+    await this.cargarPdfMaker();
       
 
-      var dd = {
+    var dd = {
         content: [
           {
               image: 'imagen',

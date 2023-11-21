@@ -11,12 +11,19 @@ import { Materia } from 'src/app/models/materia';
   templateUrl: './lista-alumnos-modal.component.html',
   styleUrls: ['./lista-alumnos-modal.component.css']
 })
+
 export class ListaAlumnosModalComponent implements OnInit{
 
   modalListaAlumnos: boolean;
   idMateria: number;
   alumnosDeLaMateria: Alumno[];
   materiaSeleccionada: Materia;
+  resultadoExamenUno: boolean=false;
+  resultadoExamenDos: boolean=false;
+  resultadoExamenFinal: boolean=false;
+  examenUno: number = 0
+  examenDos: number = 0
+  examenFinal: number = 0
 
 
   constructor(private modalService: SwitchService, private tokenService: TokenService,
@@ -63,6 +70,35 @@ export class ListaAlumnosModalComponent implements OnInit{
       }
     );
   }
-  
 
+  insertar(): void {
+    if (this.validarRango(this.examenUno)) {
+      // Aquí puedes agregar la lógica para guardar en la base de datos
+      this.resultadoExamenUno = true;
+      this.toastr.success('Calificación cargada con éxito', 'Éxito');
+
+    } else {
+      this.toastr.error('La calificación debe estar entre 1 y 100', 'Error');
+    }
+  }
+  guardarExamenUno() { 
+    if (this.validarRango(this.examenUno)) {
+      this.resultadoExamenUno = true;
+    } else {
+      alert('La calificación debe estar entre 1 y 100');
+    }
+    
+  }
+
+  guardarExamenDos() {
+    this.resultadoExamenDos = true
+  }
+
+  guardarExamenFinal() {
+    this.resultadoExamenFinal = true
+  }
+
+  validarRango(valor: number): boolean {
+    return valor >= 1 && valor <= 100;
+  }
 }
