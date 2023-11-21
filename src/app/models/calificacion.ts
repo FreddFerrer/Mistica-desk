@@ -1,8 +1,11 @@
-import { Materia } from "./materia";
+import { Examen } from "./examen";
 
 export class Calificacion {
     id: number;
-    nombre: string;
-    fecha: Date;
-    materia: Materia;
+    nota: number;
+    examen: Examen;
+
+    constructor(nota: number) {
+        this.nota = nota;
+    }
 }

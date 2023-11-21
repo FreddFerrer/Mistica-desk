@@ -11,7 +11,7 @@ import { JwtDto } from '../models/jwt-dto';
 export class AuthService {
 
   
-  url: string = 'http://localhost:8080/api/auth'
+  url: string = 'https://mistica-production.up.railway.app/api/auth'
 
   constructor(private httpClient: HttpClient) { }
 

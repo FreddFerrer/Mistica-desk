@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
+import { SidebarService } from 'src/app/services/sidebar.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class IndexComponent implements OnInit {
   
 
   constructor(private tokenService: TokenService, private router: Router,
-    private alumnoService: AlumnoService) { }
+    private alumnoService: AlumnoService, private sidebarService: SidebarService) { }
 
   ngOnInit() {
     if (this.tokenService.getToken()) {
@@ -35,6 +36,12 @@ export class IndexComponent implements OnInit {
   onLogOut(): void {
     this.tokenService.logOut();
     this.router.navigate(['/login']);
+  }
+
+  sidebarHidden: boolean = true;
+  toggleSidebar() {
+    this.sidebarService.toggleSidebar();
+    console.log("funciona boton")
   }
 
   private convertirRolATexto(rol: string): string{

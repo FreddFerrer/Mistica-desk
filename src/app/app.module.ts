@@ -24,6 +24,8 @@ import { AsignarMateriaModalComponent } from './pages/docentes/asignar-materia-m
 import { ListaAlumnosModalComponent } from './pages/materias/lista-alumnos-modal/lista-alumnos-modal.component';
 import { ImprimirMateriasModalComponent } from './pages/materias/imprimir-materias-modal/imprimir-materias-modal.component';
 import { AsignarAlumnoModalComponent } from './pages/alumnos/asignar-alumno-modal/asignar-alumno-modal.component';
+import { NuevoExamenModalComponent } from './pages/materias/nuevo-examen-modal/nuevo-examen-modal.component';
+import { AlumnosMateriasComponent } from './pages/docentes/alumnos-materias/alumnos-materias.component';
 
 
 
@@ -44,7 +46,10 @@ import { AsignarAlumnoModalComponent } from './pages/alumnos/asignar-alumno-moda
     AsignarMateriaModalComponent,
     ListaAlumnosModalComponent,
     ImprimirMateriasModalComponent,
-    AsignarAlumnoModalComponent 
+    AsignarAlumnoModalComponent,
+    NuevoExamenModalComponent,
+    AlumnosMateriasComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,7 @@ import { AsignarAlumnoModalComponent } from './pages/alumnos/asignar-alumno-moda
       multi: true,
     },
     SwitchService,
+    
   ],
   bootstrap: [AppComponent]
 })

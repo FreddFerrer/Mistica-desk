@@ -30,12 +30,17 @@ export class ListaAlumnosModalComponent implements OnInit{
     this.modalService.$materiaSeleccionada.subscribe((materiaSeleccionada) => {
       if (materiaSeleccionada) {
         console.log("el id de la materia en el modal es: ", materiaSeleccionada);
-        this.cargarAlumnos(materiaSeleccionada);
+        this.cargarAlumnos(materiaSeleccionada.id);
         
       }
     });
-    
-    console.log("los alumnos son: " , this.alumnosDeLaMateria)
+  }
+
+  private generarNumeroDNI(): string {
+    const minDNI = 20000000;
+    const maxDNI = 50000000;
+    const numeroDNI = Math.floor(Math.random() * (maxDNI - minDNI + 1) + minDNI).toString().padStart(8, '0');
+    return numeroDNI;
   }
 
   closeListaAlumnoModal() {
@@ -48,8 +53,10 @@ export class ListaAlumnosModalComponent implements OnInit{
 
         this.alumnosDeLaMateria = alumnos.map(alumno => ({
           ...alumno,
-          nombreCompleto: `${alumno.nombre} ${alumno.apellido}`
+          nombreCompleto: `${alumno.nombre} ${alumno.apellido}`,
+          dni: this.generarNumeroDNI()
         }));
+        console.log("los alumnos son: " , this.alumnosDeLaMateria)
       },
       (err) => {
         console.log(err);

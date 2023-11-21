@@ -9,7 +9,7 @@ import { Materia } from '../models/materia';
 })
 export class DocenteService {
 
-  private docentesUrl = 'http://localhost:8080/api/docentes';
+  private docentesUrl = 'https://mistica-production.up.railway.app/api/docentes';
 
   constructor(private http: HttpClient) {}
 

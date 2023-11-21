@@ -10,8 +10,8 @@ import { Pago } from '../models/pago';
 })
 export class AlumnoService {
 
-  private alumnossUrl = 'http://localhost:8080/api/alumnos';
-  private alumnosPorMateriaUrl = 'http://localhost:8080/api/alumnos/por-materia/';
+  private alumnossUrl = 'https://mistica-production.up.railway.app/api/alumnos';
+  private alumnosPorMateriaUrl = 'https://mistica-production.up.railway.app/api/alumnos/por-materia/';
 
   constructor(private http: HttpClient,
      private tokenService: TokenService) {}

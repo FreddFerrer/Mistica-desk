@@ -10,6 +10,7 @@ export class Materia {
     horarioEntrada: string;
     horarioSalida: string;
     alumnos: Alumno[] | null;
+    aula: string;
 
     constructor(nombreMateria: string, anoEscolar: string, turno: string, horarioEntrada: string, horarioSalida: string) {
         this.nombreMateria = nombreMateria;

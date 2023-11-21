@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Materia } from 'src/app/models/materia';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { MateriaService } from 'src/app/services/materia.service';
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { SpeechServiceService } from 'src/app/services/speech-service.service';
 import { SwitchService } from 'src/app/services/switch.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -20,11 +22,15 @@ export class MateriasComponent implements OnInit{
   materiaSeleccionada: Materia;
   modalImprimirMaterias: boolean
   modalAsignarAlumno: boolean;
+  modalNuevoExamen: boolean;
+  materiaSeleccionadaParaExamen: Materia;
   pdfMake: any;
 
 
   constructor(private tokenService: TokenService, private materiaService: MateriaService, 
-    private modalService: SwitchService){
+    private modalService: SwitchService, private speechService: SpeechServiceService,
+    private sidebarService: SidebarService
+    ){
 
   }
 
@@ -37,6 +43,9 @@ export class MateriasComponent implements OnInit{
     })
     this.modalService.$asignarAlumno.subscribe((valor) => {
       this.modalAsignarAlumno = valor;
+    })
+    this.modalService.$nuevoExamen.subscribe((valor) => {
+      this.modalNuevoExamen = valor;
     })
 
     this.rol = this.tokenService.getAuthority();
@@ -51,11 +60,35 @@ export class MateriasComponent implements OnInit{
     }
   }
 
+  listaDeMateriasTalk(): void {
+    //this.speechService.speak(`Las materias son:${materia.}`);
+  }
+
+  generarLetra(): string {
+    const letras = ['A', 'B', 'C'];
+    const indiceLetra = Math.floor(Math.random() * letras.length);
+    return letras[indiceLetra];
+  }
+
+  openNuevoExamenModal(idMateria: number){
+    this.materiaSeleccionadaParaExamen = this.materias.find(materia => materia.id === idMateria);
+
+    if (this.materiaSeleccionadaParaExamen) {
+      this.modalService.setMateriaSeleccionadaParaExamen(this.materiaSeleccionadaParaExamen);
+
+      console.log("la materia seleccionada es: ", this.materiaSeleccionadaParaExamen.id);
+
+      this.modalNuevoExamen = true;
+    } else {
+      console.error("No se encontró la materia con ID", idMateria);
+    }
+  }
+
   openAsignarAlumnoModal(idMateria: number){
     this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
 
     if (this.materiaSeleccionada) {
-      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada.id);
+      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada);
 
       console.log("la materia seleccionada es: ", this.materiaSeleccionada.id);
 
@@ -74,7 +107,7 @@ export class MateriasComponent implements OnInit{
     this.materiaSeleccionada = this.materias.find(materia => materia.id === idMateria);
 
     if (this.materiaSeleccionada) {
-      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada.id);
+      this.modalService.setMateriaSeleccionada(this.materiaSeleccionada);
 
       console.log("la materia seleccionada es: ", this.materiaSeleccionada.id);
 
@@ -82,6 +115,12 @@ export class MateriasComponent implements OnInit{
     } else {
       console.error("No se encontró la materia con ID", idMateria);
     }
+  }
+
+  sidebarHidden: boolean = true;
+  toggleSidebar() {
+    this.sidebarService.toggleSidebar();
+    console.log("funciona boton")
   }
 
   openImprimirMaterias() {
@@ -115,16 +154,28 @@ export class MateriasComponent implements OnInit{
     );
   }
 
+  private leerListaMaterias(): void {
+    const mensaje = this.generarMensajeMaterias();
+    this.speechService.speak(mensaje);
+  }
+
+  private generarMensajeMaterias(): string {
+    const materiasTexto = this.materias.map(materia => `${materia.nombreMateria} con el profesor ${materia.docente.nombre} ${materia.docente.apellido}`).join(', ');
+    return `Las materias son: ${materiasTexto}.`;
+  }
+
   getMateriasPorDocente(): void {
     this.materiaService.getMateriasPorDocente().subscribe(
-      (materias) => {
-        this.materias = materias;
-      },
-      (err) => {
-        console.log(err);
+      materias => {
+        this.materias = materias.map(materia => ({
+          ...materia,
+          aula: this.generarLetra(),
+        }));
+        this.leerListaMaterias();
       }
     );
   }
+  
 
 
   cargarMaterias(): void {

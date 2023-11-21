@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { SpeechServiceService } from 'src/app/services/speech-service.service';
 import { TokenService } from 'src/app/services/token.service';
 
 const navLinks = document.querySelector('.nav-links') as HTMLElement;
@@ -19,7 +21,9 @@ export class MenuComponent implements OnInit{
 
   
 
-  constructor(private tokenService: TokenService, private router: Router) { }
+  constructor(private tokenService: TokenService, private router: Router,
+    private speechService: SpeechServiceService,
+    private sidebarService: SidebarService) { }
 
   ngOnInit() {
     if (this.tokenService.getToken()) {
@@ -30,11 +34,45 @@ export class MenuComponent implements OnInit{
     } else {
       this.isLogged = false;
     }
+
+    this.sidebarService.sidebarHidden$.subscribe((hidden) => {
+      this.sidebarHidden = hidden;})
+  }
+
+  listaDeMateriasTalk(): void {
+    this.speechService.speak('Lista de materias');
+  }
+
+  listaDeAlumnosTalk(): void {
+    this.speechService.speak('Lista de alumnos');
+  }
+
+  listaDeDocentesTalk(): void {
+    this.speechService.speak('Lista de docentes');
+  }
+
+  listaDePagosTalk(): void {
+    this.speechService.speak('Lista de pagos');
+  }
+
+  salirTalk(): void {
+    this.speechService.speak('salir');
+  }
+
+  materiasYAlumnosTalk(): void {
+    this.speechService.speak('alumnos y materias');
   }
 
   onLogOut(): void {
-    this.tokenService.logOut();
-    this.router.navigate(['/login']);
+    setTimeout(() => {
+      this.tokenService.logOut();
+      this.router.navigate(['/login']);
+    }, 1000);
+  }
+
+  sidebarHidden: boolean = true;
+  toggleSidebar() {
+    this.sidebarService.toggleSidebar();
   }
 
   private convertirRolATexto(rol: string): string{

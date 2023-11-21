@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
-import { TokenService } from 'src/app/services/token.service';
 import { SwitchService } from 'src/app/services/switch.service';
-import { SidebarService } from 'src/app/services/sidebar.service';
-
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
-  selector: 'app-alumnos',
-  templateUrl: './alumnos.component.html',
-  styleUrls: ['./alumnos.component.css'],
+  selector: 'app-alumnos-materias',
+  templateUrl: './alumnos-materias.component.html',
+  styleUrls: ['./alumnos-materias.component.css']
 })
-export class AlumnosComponent implements OnInit{
+export class AlumnosMateriasComponent implements OnInit{
+
   rol: string;
   alumnos: Alumno[];
   alumnosFiltrados: Alumno[];
@@ -22,7 +21,7 @@ export class AlumnosComponent implements OnInit{
   modalSwitch3: boolean;
   
   constructor(private tokenService: TokenService, private alumnoService: AlumnoService, 
-    private modalService: SwitchService, private sidebarService: SidebarService) {
+    private modalService: SwitchService) {
     
   }
 
@@ -70,12 +69,6 @@ export class AlumnosComponent implements OnInit{
     this.modalSwitch2 = false;
   }
 
-  sidebarHidden: boolean = true;
-  toggleSidebar() {
-    this.sidebarService.toggleSidebar();
-    console.log("funciona boton")
-  }
-
   cargarAlumnos(): void {
     this.alumnoService.getAlumnos().subscribe(
       data => {
@@ -112,7 +105,9 @@ export class AlumnosComponent implements OnInit{
       ? this.alumnos
       : this.alumnos.filter(alumno => alumno.nombre.toLowerCase().includes(valor.toLowerCase()));
   }
-
   
 
+
+  
+  
 }

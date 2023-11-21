@@ -2,15 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Materia } from '../models/materia';
 import { Observable } from 'rxjs';
+import { Examen } from '../models/examen';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
 
-  private materiasUrl = 'http://localhost:8080/api/materias';
-  private materiasPorDocenteUrl = 'http://localhost:8080/api/materias/materiasPorDocente';
-  private materiasPorAlumnoUrl = 'http://localhost:8080/api/materias/materiasPorAlumno';
+  private materiasUrl = 'https://mistica-production.up.railway.app/api/materias';
+  private materiasPorDocenteUrl = 'https://mistica-production.up.railway.app/api/materias/materiasPorDocente';
+  private materiasPorAlumnoUrl = 'https://mistica-production.up.railway.app/api/materias/materiasPorAlumno';
 
   constructor(private http: HttpClient) {}
 
@@ -54,6 +55,12 @@ export class MateriaService {
   asignarAlumnoAMateria(materiaId: number, alumnoId: number): any {
     const url = `${this.materiasUrl}/${materiaId}/agregar-alumno/${alumnoId}`;
     return this.http.post<any>(url, null);
+  }
+
+  //Crear examen
+  crearExamen(materiaId: number, examen: Examen): any {
+    const url = `${this.materiasUrl}/nuevoExamen/${materiaId}`;
+    return this.http.post<Examen>(url, examen);
   }
 
 }

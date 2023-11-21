@@ -1,11 +1,27 @@
 <div class="flex">
-  <aside
-    class="font-poppins antialiased fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+  <aside [ngClass]="{'-translate-x-full': sidebarHidden}"
+    class="font-poppins antialiased fixed top-0 left-0 z-20 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar">
     <div id="view" class="h-full relative flex flex-row">
       <div id="sidebar"
         class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
         x-show="sidenav">
+        <svg (click)="toggleSidebar()" fill="#000000" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 231 231" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 231 231"
+          transform="rotate(0)" class="w-5 mt-5 sm:w-5">
+
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <g>
+              <rect width="230" x="0.5" y="198" height="33"></rect>
+              <rect width="131" x="1.5" y="133" height="33"></rect>
+              <rect width="131" x="1.5" y="66" height="33"></rect>
+              <rect width="230" x="0.5" height="33"></rect>
+              <polygon points="197.5,83 148.5,116 197.5,149 197.5,132 230.5,132 230.5,99 197.5,99 "></polygon>
+            </g>
+          </g>
+        </svg>
         <div class=" md:space-y-4 mt-10">
           <h1 class="font-bold text-4xl text-center md:hidden">
             E<span class="text-[#3498DB]">.</span>
@@ -24,30 +40,29 @@
           </div>
         </div>
         <div id="menu" class="flex flex-col space-y-2">
-          <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')" routerLink="/alumnos"
+          <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE')" (click)="listaDeAlumnosTalk()" routerLink="/alumnos"
             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out flex flex-row justify-left align-center text-center">
-            <!-- Si querés que el ícono en el sidebar sea más chico, solo modifica la clase w-10 por un número meno w-8 por ejemplo -->
             <img class="w-10" src="./assets/img/icons/grupo.png" alt="">
             <span class="pt-2 pl-2">Alumnos</span>
           </a>
           <a *ngIf="isLogged && (rol === 'ROLE_AUTORIDAD' || rol === 'ROLE_DOCENTE' || rol === 'ROLE_ESTUDIANTE')"
-            routerLink="/materias" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out 
+            routerLink="/materias" (click)="listaDeMateriasTalk()" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:text-base hover:scale-105 rounded-md transition duration-150 ease-in-out 
             flex flex-row justify-left align-center text-center">
             <img class="w-10" src="./assets/img/icons/libro.png" alt="">
             <span class="pt-2 pl-2">Materias</span>
           </a>
-          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'" routerLink="/docentes" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
+          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD'" routerLink="/docentes" (click)="listaDeDocentesTalk()" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
             <img class="w-10" src="./assets/img/icons/maestro.png" alt="">
             <span class="pt-2 pl-2">Docentes</span>
           </a>
-          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD' || rol == 'ROLE_ESTUDIANTE'" routerLink="/pagos" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
+          <a *ngIf="isLogged && rol === 'ROLE_AUTORIDAD' || rol == 'ROLE_ESTUDIANTE'" (click)="listaDePagosTalk()" routerLink="/pagos" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
             <img class="w-10" src="./assets/img/icons/factura.png" alt="">
             <span class="pt-2 pl-2">Pagos</span>
           </a>
 
-          <a *ngIf="isLogged" (click)="onLogOut()" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
+          <a *ngIf="isLogged" (click)="onLogOut()" (click)="salirTalk()" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#3498DB] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out
             flex flex-row justify-left align-center text-center">
             <img class="w-10" src="./assets/img/icons/puerta-de-salida.png" alt="">
             <span class="pt-2 pl-2">Salir</span>

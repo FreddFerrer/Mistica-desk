@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class PagoService {
 
-  private todosLosPagosUrl = 'http://localhost:8080/api/alumnos/pagos';
-  private pagosPorAlumno = 'http://localhost:8080/api/alumnos/pagosPorAlumno';
+  private todosLosPagosUrl = 'https://mistica-production.up.railway.app/api/alumnos/pagos';
+  private pagosPorAlumno = 'https://mistica-production.up.railway.app/api/alumnos/pagosPorAlumno';
 
   constructor(private http: HttpClient,
      private tokenService: TokenService) {}
